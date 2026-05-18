@@ -1,131 +1,91 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import {
-  Globe, ArrowRight, ChevronRight,
-  MessageSquare, Heart, Rss, PenSquare, TrendingUp,
-  Star, Mail
-} from 'lucide-react'
-import { SectionHeader } from '../components/ui'
+import { motion } from 'framer-motion'
+import { ChevronRight, Users, GraduationCap, Globe, MessageSquare, ArrowRight } from 'lucide-react'
+import { batchGroups, deptGroups, chapters, forumTopics } from '../data/communityData'
 
-const chapters = [
+const hubs = [
   {
-    region: 'South Asia',
-    flag: '🇧🇩',
-    chapters: [
-      { city: 'Dhaka', country: 'Bangladesh', members: 4820, active: true, lead: 'Col. (Retd.) Farid Hossain' },
-      { city: 'Chittagong', country: 'Bangladesh', members: 640, active: true, lead: 'Eng. Morshed Ali' },
-      { city: 'Sylhet', country: 'Bangladesh', members: 290, active: true, lead: 'Dr. Kamrul Islam' },
+    path: '/community/batch',
+    icon: <GraduationCap size={26} />,
+    num: '01',
+    label: 'Batch Groups',
+    desc: 'Reconnect with your graduating class. Each batch year has its own group, representatives, and group chat.',
+    stats: [
+      { v: batchGroups.length, l: 'Batches' },
+      { v: batchGroups.reduce((s, b) => s + b.members, 0).toLocaleString(), l: 'Members' },
     ],
-    color: 'bg-forest-700',
-    lightColor: 'bg-forest-50',
-    borderColor: 'border-forest-200',
-    hoverBorder: 'hover:border-forest-400',
-    total: 5750,
+    stripe: 'bg-forest-600',
+    iconColor: 'text-forest-600',
+    numColor: 'text-forest-50',
+    ctaColor: 'text-forest-700 group-hover:text-forest-900',
+    chipBorder: 'border-forest-100',
+    chipText: 'text-forest-700',
+    chipLabel: 'text-forest-400',
+    chipBg: 'bg-forest-50',
   },
   {
-    region: 'North America',
-    flag: '🇺🇸',
-    chapters: [
-      { city: 'New York', country: 'USA', members: 380, active: true, lead: 'Eng. Shahriar Ahmed' },
-      { city: 'San Francisco', country: 'USA', members: 510, active: true, lead: 'Dr. Nusrat Jahan' },
-      { city: 'Toronto', country: 'Canada', members: 210, active: true, lead: 'Eng. Raihan Khan' },
+    path: '/community/departments',
+    icon: <Users size={26} />,
+    num: '02',
+    label: 'Department Groups',
+    desc: 'Connect with alumni from your discipline — CSE, EEE, Civil, ME and more. Job referrals, research, chat.',
+    stats: [
+      { v: deptGroups.length, l: 'Groups' },
+      { v: deptGroups.reduce((s, g) => s + g.members, 0).toLocaleString(), l: 'Members' },
     ],
-    color: 'bg-blue-700',
-    lightColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
-    hoverBorder: 'hover:border-blue-400',
-    total: 1100,
+    stripe: 'bg-blue-600',
+    iconColor: 'text-blue-600',
+    numColor: 'text-blue-50',
+    ctaColor: 'text-blue-700 group-hover:text-blue-900',
+    chipBorder: 'border-blue-100',
+    chipText: 'text-blue-700',
+    chipLabel: 'text-blue-400',
+    chipBg: 'bg-blue-50',
   },
   {
-    region: 'Europe',
-    flag: '🇬🇧',
-    chapters: [
-      { city: 'London', country: 'UK', members: 290, active: true, lead: 'Dr. Anika Sultana' },
-      { city: 'Berlin', country: 'Germany', members: 140, active: false, lead: 'Eng. Ismat Hossain' },
-      { city: 'Stockholm', country: 'Sweden', members: 95, active: false, lead: 'Dr. Tania Islam' },
+    path: '/community/chapters',
+    icon: <Globe size={26} />,
+    num: '03',
+    label: 'Regional Chapters',
+    desc: 'Find MIST alumni near you across 6 global regions and 18 city chapters. Join or start a local chapter.',
+    stats: [
+      { v: chapters.length, l: 'Regions' },
+      { v: chapters.reduce((s, r) => s + r.chapters.length, 0), l: 'Chapters' },
     ],
-    color: 'bg-purple-700',
-    lightColor: 'bg-purple-50',
-    borderColor: 'border-purple-200',
-    hoverBorder: 'hover:border-purple-400',
-    total: 525,
+    stripe: 'bg-amber-500',
+    iconColor: 'text-amber-600',
+    numColor: 'text-amber-50',
+    ctaColor: 'text-amber-700 group-hover:text-amber-900',
+    chipBorder: 'border-amber-100',
+    chipText: 'text-amber-700',
+    chipLabel: 'text-amber-400',
+    chipBg: 'bg-amber-50',
   },
   {
-    region: 'Middle East',
-    flag: '🇸🇦',
-    chapters: [
-      { city: 'Riyadh', country: 'Saudi Arabia', members: 620, active: true, lead: 'Eng. Tariq Hassan' },
-      { city: 'Dubai', country: 'UAE', members: 470, active: true, lead: 'Eng. Sazzad Hossain' },
-      { city: 'Qatar', country: 'Qatar', members: 195, active: false, lead: 'Eng. Masud Rana' },
+    path: '/community/forum',
+    icon: <MessageSquare size={26} />,
+    num: '04',
+    label: 'Discussion Forum',
+    desc: 'Open knowledge exchange — career advice, higher studies, technical topics, and alumni stories.',
+    stats: [
+      { v: forumTopics.length, l: 'Hot Threads' },
+      { v: '5,660+', l: 'Total Posts' },
     ],
-    color: 'bg-amber-700',
-    lightColor: 'bg-amber-50',
-    borderColor: 'border-amber-200',
-    hoverBorder: 'hover:border-amber-400',
-    total: 1285,
+    stripe: 'bg-purple-600',
+    iconColor: 'text-purple-600',
+    numColor: 'text-purple-50',
+    ctaColor: 'text-purple-700 group-hover:text-purple-900',
+    chipBorder: 'border-purple-100',
+    chipText: 'text-purple-700',
+    chipLabel: 'text-purple-400',
+    chipBg: 'bg-purple-50',
   },
-  {
-    region: 'Asia Pacific',
-    flag: '🇦🇺',
-    chapters: [
-      { city: 'Sydney', country: 'Australia', members: 210, active: true, lead: 'Dr. Rezwan Karim' },
-      { city: 'Tokyo', country: 'Japan', members: 88, active: false, lead: 'Eng. Bipul Das' },
-      { city: 'Seoul', country: 'South Korea', members: 165, active: true, lead: 'Eng. Ashraful C.' },
-    ],
-    color: 'bg-teal-700',
-    lightColor: 'bg-teal-50',
-    borderColor: 'border-teal-200',
-    hoverBorder: 'hover:border-teal-400',
-    total: 463,
-  },
-  {
-    region: 'South East Asia',
-    flag: '🇸🇬',
-    chapters: [
-      { city: 'Singapore', country: 'Singapore', members: 142, active: true, lead: 'Eng. Farhan Islam' },
-      { city: 'Kuala Lumpur', country: 'Malaysia', members: 98, active: false, lead: 'Eng. Rafiq Hassan' },
-    ],
-    color: 'bg-rose-700',
-    lightColor: 'bg-rose-50',
-    borderColor: 'border-rose-200',
-    hoverBorder: 'hover:border-rose-400',
-    total: 240,
-  },
-]
-
-const groups = [
-  { name: 'CSE Alumni Network', members: 2840, posts: 1240, icon: '💻', desc: 'Tech, software, AI and computer science discussions' },
-  { name: 'Civil Engineers Bangladesh', members: 1920, posts: 870, icon: '🏗️', desc: 'Infrastructure, structural and environmental engineering' },
-  { name: 'EEE Professionals', members: 1540, posts: 620, icon: '⚡', desc: 'Electrical, electronics and power systems professionals' },
-  { name: 'MIST Entrepreneurs', members: 680, posts: 340, icon: '🚀', desc: 'Startup founders, investors and business leaders' },
-  { name: 'Women in MIST', members: 520, posts: 290, icon: '👩‍💻', desc: 'Empowering women graduates across disciplines' },
-  { name: 'MIST Research Network', members: 740, posts: 410, icon: '🔬', desc: 'Academic researchers and PhD scholars worldwide' },
-]
-
-const forumCategories = [
-  { label: 'Career', color: 'text-blue-600 bg-blue-50 border-blue-200', posts: 1840 },
-  { label: 'Higher Studies', color: 'text-purple-600 bg-purple-50 border-purple-200', posts: 1120 },
-  { label: 'Technical', color: 'text-forest-600 bg-forest-50 border-forest-200', posts: 920 },
-  { label: 'Entrepreneurship', color: 'text-orange-600 bg-orange-50 border-orange-200', posts: 580 },
-  { label: 'Campus Life', color: 'text-pink-600 bg-pink-50 border-pink-200', posts: 740 },
-  { label: 'General', color: 'text-zinc-600 bg-zinc-50 border-zinc-200', posts: 460 },
-]
-
-const trendingTopics = [
-  { title: 'How I moved from Bangladesh to Germany as a Mech Engineer', author: 'Ismat H.', category: 'Career', upvotes: 412, comments: 68 },
-  { title: 'MIST thesis to MIT PhD — my complete application journey', author: 'Dr. Tahmina R.', category: 'Higher Studies', upvotes: 380, comments: 94 },
-  { title: 'Best AI tools for Civil Engineers in 2025', author: 'Eng. Karim', category: 'Technical', upvotes: 265, comments: 41 },
-  { title: 'Raising $500K for a Dhaka-based tech startup — AMA', author: 'Arif H.', category: 'Entrepreneurship', upvotes: 310, comments: 86 },
 ]
 
 export default function CommunityPage() {
-  const [activeRegion, setActiveRegion] = useState(0)
-  const region = chapters[activeRegion]
-
   return (
     <>
-      {/* ── Hero ──────────────────────────────────────────────────── */}
+      {/* Hero */}
       <div className="bg-forest-950 pt-24 pb-0 relative overflow-hidden">
         <motion.div
           initial={{ opacity: 0 }}
@@ -137,9 +97,7 @@ export default function CommunityPage() {
             backgroundSize: '40px 40px',
           }}
         />
-
         <div className="relative max-w-7xl mx-auto px-6">
-          {/* Editorial masthead */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -148,14 +106,12 @@ export default function CommunityPage() {
           >
             <span className="font-mono text-[10px] tracking-[0.5em] uppercase text-forest-500 whitespace-nowrap">MISTAS</span>
             <div className="flex-1 border-t border-forest-800" />
-            <span className="font-mono text-[10px] tracking-[0.5em] uppercase text-forest-400 whitespace-nowrap">Community &amp; Chapters</span>
+            <span className="font-mono text-[10px] tracking-[0.5em] uppercase text-forest-400 whitespace-nowrap">Community Hub</span>
             <div className="flex-1 border-t border-forest-800" />
             <span className="font-mono text-[10px] tracking-[0.5em] uppercase text-forest-500 whitespace-nowrap">EST. 2010</span>
           </motion.div>
 
-          {/* Main hero grid */}
           <div className="grid lg:grid-cols-12 gap-8 items-end pb-16">
-            {/* Display heading */}
             <div className="lg:col-span-7">
               <motion.div
                 initial={{ y: 50, opacity: 0 }}
@@ -169,8 +125,6 @@ export default function CommunityPage() {
                 </div>
               </motion.div>
             </div>
-
-            {/* Description + CTAs */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -179,460 +133,175 @@ export default function CommunityPage() {
             >
               <div className="border-l-2 border-forest-600 pl-6">
                 <p className="font-body text-forest-300 text-lg leading-relaxed mb-8">
-                  From Dhaka to Dubai, London to Los Angeles — MIST alumni chapters span the globe. Find your local community, join groups, and engage in our knowledge forums.
+                  From batch mates to global chapters, department networks to open discussions — find and connect with your MIST community.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a href="#chapters" className="btn-primary flex items-center justify-center gap-2">
-                    Find Your Chapter <Globe size={14} />
-                  </a>
-                  <a
-                    href="#forum"
-                    className="btn-outline border-forest-600 text-forest-300 hover:bg-forest-800 hover:text-white hover:border-forest-800 flex items-center justify-center gap-2"
-                  >
-                    Join Forum <MessageSquare size={14} />
-                  </a>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { n: '85+', l: 'Countries' },
+                    { n: '12K+', l: 'Members' },
+                    { n: '18', l: 'Chapters' },
+                    { n: '3.2K', l: 'Forum Posts' },
+                  ].map(({ n, l }) => (
+                    <div key={l} className="border border-forest-700 px-4 py-3">
+                      <div className="font-display text-xl font-bold text-white">{n}</div>
+                      <div className="font-mono text-[9px] text-forest-500 tracking-widest uppercase mt-0.5">{l}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>
-          </div>
-
-          {/* Stats strip */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="border-t border-forest-800 grid grid-cols-3 md:grid-cols-6 divide-x divide-forest-800"
-          >
-            {[
-              { n: '85+', label: 'Countries' },
-              { n: '18', label: 'Chapters' },
-              { n: '12K+', label: 'Members' },
-              { n: '24', label: 'Groups' },
-              { n: '3.2K', label: 'Forum Posts' },
-              { n: '6', label: 'Regions' },
-            ].map(({ n, label }) => (
-              <div key={label} className="py-6 px-4 text-center">
-                <div className="font-display text-2xl font-bold text-white">{n}</div>
-                <div className="font-mono text-[9px] text-forest-500 tracking-widest uppercase mt-1">{label}</div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Section nav */}
-        <div className="border-t border-forest-800">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex gap-8 overflow-x-auto">
-              {['Chapters', 'Groups', 'Forum'].map((t) => (
-                <a
-                  key={t}
-                  href={`#${t.toLowerCase()}`}
-                  className="py-4 font-mono text-[10px] tracking-[0.35em] uppercase text-forest-500 hover:text-white transition-colors whitespace-nowrap border-b-2 border-transparent hover:border-forest-500"
-                >
-                  {t}
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       </div>
 
-      {/* ── Regional Chapters ─────────────────────────────────────── */}
-      <section id="chapters" className="py-24 bg-white">
+      {/* 4 Hub Cards */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Editorial section header */}
-          <div className="flex items-center gap-6 mb-16">
-            <span className="font-mono text-[10px] tracking-[0.45em] uppercase text-forest-400 whitespace-nowrap">01 — Global Chapters</span>
+          <div className="flex items-center gap-6 mb-14">
+            <span className="font-mono text-[10px] tracking-[0.45em] uppercase text-forest-400">Choose Your Community</span>
             <div className="flex-1 border-t border-forest-100" />
-            <motion.h2
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="font-display text-3xl font-bold text-forest-900 whitespace-nowrap"
-            >
-              Find Your Region
-            </motion.h2>
+            <span className="font-mono text-[10px] tracking-[0.45em] uppercase text-forest-300">4 Spaces</span>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8">
-            {/* Region selector */}
-            <div className="lg:col-span-3 space-y-1">
-              {chapters.map((ch, i) => (
-                <motion.button
-                  key={ch.region}
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  onClick={() => setActiveRegion(i)}
-                  className={`w-full text-left px-4 py-4 transition-all duration-200 border ${
-                    activeRegion === i
-                      ? `${ch.color} border-transparent`
-                      : 'border-forest-100 bg-white hover:bg-forest-50'
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-base">{ch.flag}</span>
-                      <span className={`font-sans font-semibold text-sm ${activeRegion === i ? 'text-white' : 'text-forest-900'}`}>
-                        {ch.region}
-                      </span>
-                    </div>
-                    <span className={`font-mono text-xs tabular-nums ${activeRegion === i ? 'text-white/60' : 'text-forest-400'}`}>
-                      {ch.total.toLocaleString()}
-                    </span>
-                  </div>
-                </motion.button>
-              ))}
-
-              {/* Start a chapter */}
+          <div className="grid md:grid-cols-2 gap-px bg-forest-100 border border-forest-100">
+            {hubs.map((hub, i) => (
               <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="mt-4 border border-dashed border-forest-300 p-5 bg-forest-50/50"
-              >
-                <Globe size={18} className="text-forest-400 mb-2" />
-                <h4 className="font-sans font-bold text-sm text-forest-900 mb-1">Don't See Your City?</h4>
-                <p className="font-sans text-xs text-forest-500 mb-3 leading-relaxed">
-                  Start a chapter with full MISTAS support and official recognition.
-                </p>
-                <Link to="/contact" className="text-xs font-bold text-forest-700 flex items-center gap-1 hover:gap-2 transition-all">
-                  Apply Now <ArrowRight size={11} />
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* Region detail panel */}
-            <div className="lg:col-span-9">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeRegion}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  {/* Region banner */}
-                  <div className={`${region.color} p-8 mb-6 relative overflow-hidden`}>
-                    <div className="absolute right-6 bottom-0 font-display font-bold text-white/10 leading-none select-none text-[110px]">
-                      {region.total.toLocaleString()}
-                    </div>
-                    <div className="relative">
-                      <span className="font-mono text-[10px] text-white/50 tracking-widest uppercase mb-3 block">
-                        {region.chapters.length} Chapters Active
-                      </span>
-                      <div className="flex items-center gap-4">
-                        <span className="text-5xl">{region.flag}</span>
-                        <h2 className="font-display text-4xl font-bold text-white">{region.region}</h2>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Chapter cards */}
-                  <div className="grid sm:grid-cols-3 gap-4">
-                    {region.chapters.map((c, j) => (
-                      <motion.div
-                        key={j}
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: j * 0.1 }}
-                        className={`border ${region.borderColor} p-6 bg-white hover:shadow-md transition-all duration-300 group relative overflow-hidden`}
-                      >
-                        <div className={`absolute top-0 left-0 right-0 h-[3px] ${region.color} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
-                        <div className="flex items-center gap-2 mb-4">
-                          <span className={`w-2 h-2 rounded-full ${c.active ? 'bg-emerald-400' : 'bg-zinc-300'}`} />
-                          <span className="font-mono text-[9px] text-forest-400 tracking-widest uppercase">
-                            {c.active ? 'Active Chapter' : 'Forming'}
-                          </span>
-                        </div>
-                        <h3 className="font-display text-3xl font-bold text-forest-900 leading-tight">{c.city}</h3>
-                        <p className="font-sans text-xs text-forest-400 mt-0.5 mb-5">{c.country}</p>
-                        <div className="border-t border-forest-50 pt-4 mb-4">
-                          <div className="font-display text-2xl font-bold text-forest-700">{c.members.toLocaleString()}</div>
-                          <div className="font-mono text-[9px] text-forest-400 tracking-widest uppercase">Alumni Members</div>
-                        </div>
-                        <p className="font-sans text-xs text-forest-500 mb-5">
-                          <span className="text-forest-400">Lead —</span> {c.lead}
-                        </p>
-                        <div className="flex gap-4 pt-3 border-t border-forest-50">
-                          <button className="text-xs font-sans font-bold text-forest-700 flex items-center gap-1 hover:gap-2 transition-all">
-                            Join <ChevronRight size={11} />
-                          </button>
-                          <button className="text-xs font-sans text-forest-400 flex items-center gap-1.5 hover:text-forest-700 transition-colors">
-                            <Mail size={10} /> Contact Lead
-                          </button>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Community Groups ──────────────────────────────────────── */}
-      <section id="groups" className="py-24 bg-forest-950">
-        <div className="max-w-7xl mx-auto px-6">
-          {/* Editorial section header */}
-          <div className="flex items-center gap-6 mb-16">
-            <span className="font-mono text-[10px] tracking-[0.45em] uppercase text-forest-500 whitespace-nowrap">02 — Community Groups</span>
-            <div className="flex-1 border-t border-forest-800" />
-            <motion.h2
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="font-display text-3xl font-bold text-white whitespace-nowrap"
-            >
-              Find Your Tribe
-            </motion.h2>
-          </div>
-
-          {/* Featured + secondary top row */}
-          <div className="grid lg:grid-cols-12 gap-5 mb-5">
-            {/* Featured group */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-7 bg-forest-800 border border-forest-700 p-10 relative overflow-hidden group hover:border-forest-500 transition-all duration-400"
-            >
-              <div className="absolute -bottom-6 -right-6 text-[160px] leading-none select-none opacity-10 group-hover:opacity-20 transition-opacity duration-500">
-                {groups[0].icon}
-              </div>
-              <div className="relative">
-                <div className="flex items-center gap-3 mb-8">
-                  <span className="font-mono text-[9px] tracking-widest uppercase text-forest-400 bg-forest-900 border border-forest-700 px-3 py-1.5">
-                    Featured Group
-                  </span>
-                  <span className="font-mono text-[9px] tracking-widest uppercase text-forest-500">
-                    {groups[0].members.toLocaleString()} members
-                  </span>
-                </div>
-                <div className="text-5xl mb-5">{groups[0].icon}</div>
-                <h3 className="font-display text-4xl font-bold text-white mb-4 leading-tight">{groups[0].name}</h3>
-                <p className="font-body text-forest-300 text-lg leading-relaxed mb-8 max-w-md">{groups[0].desc}</p>
-                <div className="flex items-center gap-6">
-                  <button className="btn-primary flex items-center gap-2">
-                    Join Group <ChevronRight size={14} />
-                  </button>
-                  <span className="font-sans text-sm text-forest-400 flex items-center gap-2">
-                    <Rss size={12} /> {groups[0].posts.toLocaleString()} posts
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Two secondary groups stacked */}
-            <div className="lg:col-span-5 grid grid-rows-2 gap-5">
-              {groups.slice(1, 3).map((group, i) => (
-                <motion.div
-                  key={group.name}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-forest-800 border border-forest-700 p-7 group hover:border-forest-500 transition-all duration-300 relative overflow-hidden"
-                >
-                  <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-forest-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-400 origin-top" />
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl mt-0.5">{group.icon}</span>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-mono text-[9px] tracking-widest uppercase text-forest-500">
-                          {group.members.toLocaleString()} members
-                        </span>
-                        <span className="font-sans text-xs text-forest-500 flex items-center gap-1">
-                          <Rss size={9} /> {group.posts.toLocaleString()}
-                        </span>
-                      </div>
-                      <h3 className="font-display text-xl font-bold text-white group-hover:text-forest-300 transition-colors leading-tight">
-                        {group.name}
-                      </h3>
-                      <p className="font-sans text-sm text-forest-400 mt-1.5 leading-relaxed">{group.desc}</p>
-                    </div>
-                  </div>
-                  <button className="mt-5 text-xs font-bold text-forest-400 group-hover:text-forest-300 flex items-center gap-1.5 hover:gap-3 transition-all">
-                    Join Group <ChevronRight size={11} />
-                  </button>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Remaining 3 groups */}
-          <div className="grid sm:grid-cols-3 gap-5">
-            {groups.slice(3).map((group, i) => (
-              <motion.div
-                key={group.name}
-                initial={{ opacity: 0, y: 20 }}
+                key={hub.path}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="bg-forest-900 border border-forest-800 p-6 group hover:border-forest-600 hover:bg-forest-800 transition-all duration-300"
+                transition={{ delay: i * 0.1 }}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <span className="text-3xl">{group.icon}</span>
-                  <span className="font-mono text-[9px] text-forest-500 tracking-widest uppercase">
-                    {group.members.toLocaleString()} mbrs
-                  </span>
-                </div>
-                <h3 className="font-display text-xl font-bold text-white mb-2 group-hover:text-forest-300 transition-colors">
-                  {group.name}
-                </h3>
-                <p className="font-sans text-sm text-forest-500 leading-relaxed mb-5">{group.desc}</p>
-                <div className="flex items-center justify-between pt-4 border-t border-forest-800">
-                  <span className="text-xs font-sans text-forest-500 flex items-center gap-1.5">
-                    <Rss size={9} /> {group.posts.toLocaleString()} posts
-                  </span>
-                  <button className="text-xs font-bold text-forest-400 group-hover:text-forest-300 flex items-center gap-1.5 hover:gap-3 transition-all">
-                    Join <ChevronRight size={11} />
-                  </button>
-                </div>
+                <Link
+                  to={hub.path}
+                  className="flex flex-col bg-white group hover:bg-zinc-50 transition-colors duration-300 relative overflow-hidden h-full"
+                >
+                  {/* Colored top stripe */}
+                  <div className={`${hub.stripe} h-[3px] w-full`} />
+
+                  {/* Ghost number watermark */}
+                  <div className={`absolute top-4 right-6 font-display font-bold text-[88px] leading-none select-none pointer-events-none ${hub.numColor} opacity-[0.06] group-hover:opacity-[0.10] transition-opacity duration-500`}>
+                    {hub.num}
+                  </div>
+
+                  <div className="relative p-8 flex flex-col flex-1">
+                    {/* Index + icon row */}
+                    <div className="flex items-center justify-between mb-7">
+                      <span className={`font-mono text-[10px] tracking-[0.45em] uppercase ${hub.iconColor} opacity-70`}>
+                        {hub.num}
+                      </span>
+                      <div className={`w-11 h-11 flex items-center justify-center border ${hub.chipBorder} ${hub.chipBg} ${hub.iconColor} group-hover:scale-110 transition-transform duration-300`}>
+                        {hub.icon}
+                      </div>
+                    </div>
+
+                    {/* Heading */}
+                    <h3 className="font-display text-[28px] font-bold text-forest-950 leading-tight mb-3 group-hover:text-forest-800 transition-colors">
+                      {hub.label}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="font-sans text-sm text-forest-500 leading-relaxed mb-7 flex-1">
+                      {hub.desc}
+                    </p>
+
+                    {/* Stat chips */}
+                    <div className="flex gap-3 mb-7">
+                      {hub.stats.map(({ v, l }) => (
+                        <div key={l} className={`flex-1 border ${hub.chipBorder} ${hub.chipBg} px-4 py-3 text-center`}>
+                          <div className={`font-display text-xl font-bold ${hub.chipText}`}>{v}</div>
+                          <div className={`font-mono text-[9px] tracking-widest uppercase mt-0.5 ${hub.chipLabel}`}>{l}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* CTA */}
+                    <div className="flex items-center justify-between pt-5 border-t border-forest-100">
+                      <span className={`font-sans font-bold text-sm ${hub.ctaColor} transition-colors flex items-center gap-2 group-hover:gap-3 transition-all duration-200`}>
+                        Explore <ChevronRight size={14} />
+                      </span>
+                      <div className={`w-7 h-[2px] ${hub.stripe} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right`} />
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Knowledge Forum ───────────────────────────────────────── */}
-      <section id="forum" className="py-24 bg-white">
+      {/* Quick preview strips */}
+      <section className="py-16 bg-zinc-50">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Editorial section header */}
-          <div className="flex items-center gap-6 mb-16">
-            <span className="font-mono text-[10px] tracking-[0.45em] uppercase text-forest-400 whitespace-nowrap">03 — Knowledge Forum</span>
-            <div className="flex-1 border-t border-forest-100" />
-            <motion.h2
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="font-display text-3xl font-bold text-forest-900 whitespace-nowrap"
-            >
-              Trending Discussions
-            </motion.h2>
-          </div>
+          <div className="grid lg:grid-cols-2 gap-12">
 
-          <div className="grid lg:grid-cols-12 gap-12">
-            {/* Main content column */}
-            <div className="lg:col-span-8">
-              {/* Featured discussion */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="group border-l-4 border-forest-600 pl-8 pb-10 mb-8 border-b border-forest-100 cursor-pointer hover:border-l-forest-400 transition-colors duration-300"
-              >
-                <div className="flex items-center gap-3 mb-5 flex-wrap">
-                  <span className={`text-[10px] font-mono tracking-widest uppercase px-2 py-1 border ${
-                    forumCategories.find((c) => c.label === trendingTopics[0].category)?.color || ''
-                  }`}>
-                    {trendingTopics[0].category}
-                  </span>
-                  <span className="font-mono text-[10px] text-forest-400 bg-forest-50 border border-forest-100 px-2 py-1 flex items-center gap-1">
-                    <TrendingUp size={8} /> Trending
-                  </span>
-                  <span className="font-mono text-[10px] text-forest-400">Featured</span>
-                </div>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-forest-900 group-hover:text-forest-700 transition-colors leading-tight mb-4">
-                  {trendingTopics[0].title}
-                </h2>
-                <p className="font-sans text-sm text-forest-400 mb-6">by {trendingTopics[0].author}</p>
-                <div className="flex items-center gap-6 text-sm text-forest-400 flex-wrap">
-                  <span className="flex items-center gap-2"><Heart size={13} /> {trendingTopics[0].upvotes} upvotes</span>
-                  <span className="flex items-center gap-2"><MessageSquare size={13} /> {trendingTopics[0].comments} comments</span>
-                  <button className="ml-auto font-sans font-bold text-forest-700 flex items-center gap-1.5 hover:gap-3 transition-all text-sm">
-                    Read Thread <ChevronRight size={13} />
-                  </button>
-                </div>
-              </motion.div>
-
-              {/* Remaining discussions */}
-              <div>
-                {trendingTopics.slice(1).map((topic, i) => (
+            {/* Recent batches */}
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-forest-400">Latest Batches</span>
+                <div className="flex-1 border-t border-forest-100" />
+                <Link to="/community/batch" className="text-xs font-bold text-forest-600 flex items-center gap-1 hover:gap-2 transition-all">
+                  View all <ArrowRight size={11} />
+                </Link>
+              </div>
+              <div className="space-y-2">
+                {batchGroups.slice(0, 4).map((b, i) => (
                   <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    key={b.year}
+                    initial={{ opacity: 0, x: -12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.08 }}
-                    className="group flex gap-6 py-6 border-b border-forest-100 cursor-pointer hover:bg-forest-50/60 px-4 -mx-4 transition-colors duration-200 rounded-sm"
+                    transition={{ delay: i * 0.06 }}
                   >
-                    <div className="font-display text-4xl font-bold text-forest-100 group-hover:text-forest-200 transition-colors w-10 flex-shrink-0 text-right leading-none pt-1">
-                      {String(i + 2).padStart(2, '0')}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2 flex-wrap">
-                        <span className={`text-[10px] font-mono tracking-widest uppercase px-2 py-0.5 border ${
-                          forumCategories.find((c) => c.label === topic.category)?.color || ''
-                        }`}>
-                          {topic.category}
-                        </span>
+                    <Link
+                      to={`/community/batch/${b.year}`}
+                      className="flex items-center justify-between bg-white border border-forest-100 px-5 py-4 group hover:border-forest-300 hover:shadow-sm transition-all"
+                    >
+                      <div className="flex items-center gap-4">
+                        <span className={`w-2 h-2 rounded-full ${b.status === 'Active' ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+                        <span className="font-display text-2xl font-bold text-forest-900">{b.year}</span>
+                        <span className="font-mono text-[9px] text-forest-400 tracking-widest uppercase hidden sm:block">{b.status}</span>
                       </div>
-                      <h3 className="font-sans font-semibold text-forest-900 group-hover:text-forest-700 transition-colors leading-snug text-base">
-                        {topic.title}
-                      </h3>
-                      <p className="font-sans text-xs text-forest-400 mt-1.5">by {topic.author}</p>
-                    </div>
-                    <div className="hidden sm:flex flex-col items-end gap-2 text-xs text-forest-400 flex-shrink-0">
-                      <span className="flex items-center gap-1.5"><Heart size={11} /> {topic.upvotes}</span>
-                      <span className="flex items-center gap-1.5"><MessageSquare size={11} /> {topic.comments}</span>
-                    </div>
+                      <div className="flex items-center gap-6 text-xs text-forest-400">
+                        <span>{b.members.toLocaleString()} members</span>
+                        <ChevronRight size={13} className="text-forest-200 group-hover:text-forest-500 transition-colors" />
+                      </div>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
-
-              <div className="flex gap-4 mt-10">
-                <button className="btn-outline flex items-center gap-2">
-                  Browse All Topics <ArrowRight size={14} />
-                </button>
-                <button className="btn-primary flex items-center gap-2">
-                  Start Discussion <PenSquare size={14} />
-                </button>
-              </div>
             </div>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-4">
-              <div className="sticky top-24">
-                <h3 className="font-mono text-[10px] tracking-[0.4em] uppercase text-forest-400 mb-5 pb-3 border-b border-forest-100">
-                  Browse by Category
-                </h3>
-                <div className="space-y-1.5 mb-10">
-                  {forumCategories.map((cat, i) => (
-                    <motion.button
-                      key={cat.label}
-                      initial={{ opacity: 0, x: 15 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.07 }}
-                      className={`w-full flex items-center justify-between px-4 py-3 border transition-all hover:shadow-sm text-left ${cat.color}`}
+            {/* Recent forum threads */}
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-forest-400">Trending Threads</span>
+                <div className="flex-1 border-t border-forest-100" />
+                <Link to="/community/forum" className="text-xs font-bold text-forest-600 flex items-center gap-1 hover:gap-2 transition-all">
+                  View all <ArrowRight size={11} />
+                </Link>
+              </div>
+              <div className="space-y-2">
+                {forumTopics.map((t, i) => (
+                  <motion.div
+                    key={t.id}
+                    initial={{ opacity: 0, x: 12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.06 }}
+                  >
+                    <Link
+                      to={`/community/forum/${t.id}`}
+                      className="flex items-start justify-between bg-white border border-forest-100 px-5 py-4 group hover:border-forest-300 hover:shadow-sm transition-all gap-4"
                     >
-                      <span className="font-sans font-medium text-sm">{cat.label}</span>
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs font-bold tabular-nums">{cat.posts.toLocaleString()}</span>
-                        <ChevronRight size={11} className="opacity-40" />
+                      <div className="flex-1 min-w-0">
+                        <p className="font-sans text-sm font-medium text-forest-900 group-hover:text-forest-700 transition-colors leading-snug truncate">{t.title}</p>
+                        <p className="font-mono text-[9px] text-forest-400 tracking-wider mt-1">{t.category} · {t.upvotes} upvotes</p>
                       </div>
-                    </motion.button>
-                  ))}
-                </div>
-
-                {/* Editorial CTA */}
-                <div className="bg-forest-950 p-7 relative overflow-hidden">
-                  <div className="absolute -bottom-10 -right-10 w-36 h-36 bg-forest-800 rounded-full opacity-50" />
-                  <div className="relative">
-                    <div className="font-mono text-[9px] tracking-widest uppercase text-forest-500 mb-4">Alumni Stories</div>
-                    <Star size={20} className="text-gold-400 mb-3" />
-                    <h4 className="font-display text-xl text-white font-bold mb-3">Share Your Story</h4>
-                    <p className="font-sans text-sm text-forest-300 leading-relaxed mb-5">
-                      Your career journey could inspire thousands of MISTians. Write a post and pay it forward.
-                    </p>
-                    <button className="w-full py-3 bg-forest-600 text-white text-sm font-sans font-bold hover:bg-forest-500 transition-colors flex items-center justify-center gap-2">
-                      Write a Post <PenSquare size={13} />
-                    </button>
-                  </div>
-                </div>
+                      <ChevronRight size={13} className="text-forest-200 group-hover:text-forest-500 transition-colors flex-shrink-0 mt-0.5" />
+                    </Link>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>

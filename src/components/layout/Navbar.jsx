@@ -18,7 +18,16 @@ const navItems = [
   { label: "Engagement", path: "/engagement" },
   { label: "Careers", path: "/careers" },
   { label: "News & Events", path: "/news" },
-  { label: "Community", path: "/community" },
+  {
+    label: "Community",
+    path: "/community",
+    children: [
+      { label: "Batch Groups", path: "/community/batch" },
+      { label: "Department Groups", path: "/community/departments" },
+      { label: "Regional Chapters", path: "/community/chapters" },
+      { label: "Discussion Forum", path: "/community/forum" },
+    ],
+  },
   { label: "Contact", path: "/contact" },
 ];
 
