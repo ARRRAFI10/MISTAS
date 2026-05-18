@@ -8,87 +8,17 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Section } from "../ui";
+import { events as allEvents } from "../../data/eventsData";
+import { newsItems } from "../../data/newsData";
 
-const news = [
-  {
-    id: 1,
-    tag: "Global Reunion",
-    tagColor: "green",
-    title: "MIST Alumni in Australia Celebrate Grand Reunion in Melbourne",
-    excerpt:
-      "On 18 April 2026, the first-ever reunion of MIST alumni in Australia was held in Melbourne, bringing together former students for an unforgettable evening of nostalgia and cultural celebration.",
-    date: "Apr 18, 2026",
-    readTime: "4 min read",
-    image: "slider1.png",
-    featured: true,
-  },
-  {
-    id: 2,
-    tag: "Seminar",
-    tagColor: "gold",
-    title: "International Career Seminar with Industry Leaders",
-    excerpt:
-      "Prominent alumni from Fortune 500 companies to share insights on global career opportunities.",
-    date: "Nov 28, 2024",
-    readTime: "2 min read",
-    image:
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 3,
-    tag: "Achievement",
-    tagColor: "green",
-    title: "MIST Alumnus Appointed as Joint Secretary",
-    excerpt:
-      "Celebrating Brigadier General (Retd.) Rafiq Islam's appointment to a key national position.",
-    date: "Nov 20, 2024",
-    readTime: "2 min read",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 3,
-    tag: "Achievement",
-    tagColor: "green",
-    title: "MIST Alumnus Appointed as Joint Secretary",
-    excerpt:
-      "Celebrating Brigadier General (Retd.) Rafiq Islam's appointment to a key national position.",
-    date: "Nov 20, 2024",
-    readTime: "2 min read",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
-  },
-];
+const featuredNews = newsItems.find((n) => n.id === 6);
+const restNews = newsItems.filter((n) => n.id !== 6).slice(0, 3);
 
-const upcomingEvents = [
-  {
-    date: { day: "15", month: "DEC" },
-    title: "Annual Alumni Reunion 2024",
-    location: "MIST Campus, Dhaka",
-    time: "09:00 AM",
-  },
-  {
-    date: { day: "22", month: "DEC" },
-    title: "Tech Talk: AI in Defence Systems",
-    location: "Online Webinar",
-    time: "07:30 PM",
-  },
-  {
-    date: { day: "05", month: "JAN" },
-    title: "Batch 2005 — 20-Year Reunion",
-    location: "Radisson Blu, Dhaka",
-    time: "06:00 PM",
-  },
-  {
-    date: { day: "18", month: "JAN" },
-    title: "Mentorship Program Launch 2025",
-    location: "MIST Auditorium",
-    time: "10:00 AM",
-  },
-];
+const upcomingEvents = allEvents.slice(0, 4);
 
 export default function NewsEvents() {
-  const [featured, ...rest] = news;
+  const featured = featuredNews;
+  const rest = restNews;
 
   return (
     <Section className="py-24 bg-zinc-50 relative overflow-hidden">
@@ -124,12 +54,14 @@ export default function NewsEvents() {
           {/* Left Column: Featured Event */}
           <div className="lg:col-span-5 flex flex-col gap-8">
             {/* Featured Article */}
+            <Link to={`/news/${featured.id}`}
+              className="block group bg-white rounded-3xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-2xl hover:shadow-forest-900/15 transition-all duration-500"
+            >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="group bg-white rounded-3xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-2xl hover:shadow-forest-900/15 transition-all duration-500 cursor-pointer"
             >
               <div className="h-80 relative overflow-hidden bg-zinc-200">
                 <img
@@ -140,7 +72,7 @@ export default function NewsEvents() {
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent" />
                 <div className="absolute top-6 left-6">
                   <span className="px-4 py-1.5 bg-forest-600/95 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest rounded-full">
-                    {featured.tag}
+                    {featured.category}
                   </span>
                 </div>
               </div>
@@ -170,6 +102,7 @@ export default function NewsEvents() {
                 </span>
               </div>
             </motion.div>
+            </Link>
           </div>
 
           {/* Right Column: 4 Events in 2x2 Grid */}
@@ -183,13 +116,13 @@ export default function NewsEvents() {
               </div>
               <div className="grid grid-cols-2 gap-6">
                 {rest.map((item, i) => (
+                  <Link key={item.id} to={`/news/${item.id}`}>
                   <motion.div
-                    key={item.id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
-                    className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-lg hover:border-forest-300 transition-all duration-300 cursor-pointer flex flex-col"
+                    className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-lg hover:border-forest-300 transition-all duration-300 flex flex-col h-full"
                   >
                     <div className="h-44 relative overflow-hidden bg-zinc-200">
                       <img
@@ -200,7 +133,7 @@ export default function NewsEvents() {
                       <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="absolute top-4 left-4">
                         <span className="px-3 py-1 bg-white/95 backdrop-blur-sm text-forest-900 text-[9px] font-bold uppercase tracking-widest rounded-full shadow-sm">
-                          {item.tag}
+                          {item.category}
                         </span>
                       </div>
                     </div>
@@ -223,6 +156,7 @@ export default function NewsEvents() {
                       </div>
                     </div>
                   </motion.div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -253,68 +187,48 @@ export default function NewsEvents() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {upcomingEvents.map((event, i) => (
                 <motion.div
-                  key={i}
+                  key={event.id}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.12 * i }}
                   className="group relative"
                 >
-                  {/* Gradient border effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-forest-400/20 to-forest-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <div className="relative p-8 bg-white rounded-2xl border border-zinc-100 hover:border-forest-300 shadow-sm hover:shadow-xl transition-all duration-500 h-full flex flex-col overflow-hidden group">
-                    {/* Top accent bar */}
+                  <div className="relative p-8 bg-white rounded-2xl border border-zinc-100 hover:border-forest-300 shadow-sm hover:shadow-xl transition-all duration-500 h-full flex flex-col overflow-hidden">
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-forest-500 to-forest-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                    {/* Date Section */}
+                    {/* Date */}
                     <div className="mb-6 flex items-baseline gap-3">
-                      <div className="font-display text-4xl font-bold text-forest-600 leading-none">
-                        {event.date.day}
-                      </div>
-                      <div className="font-mono text-sm font-semibold text-forest-500 tracking-wide">
-                        {event.date.month}
-                      </div>
+                      <div className="font-display text-4xl font-bold text-forest-600 leading-none">{event.dateDay}</div>
+                      <div className="font-mono text-sm font-semibold text-forest-500 tracking-wide">{event.dateMonth}</div>
                     </div>
 
-                    {/* Content */}
                     <div className="flex-1 mb-6">
-                      <h4 className="font-display text-lg font-bold text-zinc-900 mb-4 leading-snug group-hover:text-forest-700 transition-colors">
+                      <span className={`font-mono text-[9px] tracking-widest uppercase text-white ${event.typeColor} px-2 py-0.5 inline-block mb-3`}>{event.type}</span>
+                      <h4 className="font-display text-lg font-bold text-zinc-900 leading-snug group-hover:text-forest-700 transition-colors">
                         {event.title}
                       </h4>
                     </div>
 
-                    {/* Event Details */}
                     <div className="space-y-3 pt-6 border-t border-zinc-100">
                       <div className="flex items-start gap-3">
-                        <MapPin
-                          size={16}
-                          className="text-forest-500 flex-shrink-0 mt-0.5"
-                        />
-                        <span className="font-body text-sm text-zinc-600">
-                          {event.location}
-                        </span>
+                        <MapPin size={16} className="text-forest-500 flex-shrink-0 mt-0.5" />
+                        <span className="font-body text-sm text-zinc-600 line-clamp-2">{event.location}</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Clock
-                          size={16}
-                          className="text-forest-500 flex-shrink-0"
-                        />
-                        <span className="font-mono text-sm font-semibold text-zinc-700">
-                          {event.time}
-                        </span>
+                        <Clock size={16} className="text-forest-500 flex-shrink-0" />
+                        <span className="font-mono text-sm font-semibold text-zinc-700">{event.time}</span>
                       </div>
                     </div>
 
-                    {/* CTA Button */}
                     <div className="mt-6 pt-4">
-                      <button className="w-full py-2.5 px-4 bg-forest-50 text-forest-700 font-semibold text-sm rounded-lg hover:bg-forest-100 transition-colors duration-300 group-hover/button:translate-x-1 flex items-center justify-center gap-2">
-                        Learn More
-                        <ChevronRight
-                          size={16}
-                          className="group-hover:translate-x-0.5 transition-transform"
-                        />
-                      </button>
+                      <Link to={`/events/${event.id}`}
+                        className="w-full py-2.5 px-4 bg-forest-50 text-forest-700 font-semibold text-sm rounded-lg hover:bg-forest-100 transition-colors duration-300 flex items-center justify-center gap-2">
+                        View Details
+                        <ChevronRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                      </Link>
                     </div>
                   </div>
                 </motion.div>

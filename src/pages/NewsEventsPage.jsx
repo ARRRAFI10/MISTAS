@@ -7,152 +7,10 @@ import {
   ExternalLink, Camera, Film, ChevronLeft
 } from 'lucide-react'
 import { Section, SectionHeader } from '../components/ui'
+import { newsItems } from '../data/newsData'
+import { events } from '../data/eventsData'
 
 const tabs = ['News', 'Events', 'Archive']
-
-const newsItems = [
-  {
-    id: 1,
-    category: 'Announcement',
-    catColor: 'bg-blue-50 text-blue-700 border-blue-200',
-    title: 'MISTAS Annual Reunion 2025 — Registration Now Open',
-    excerpt: 'The most anticipated alumni gathering of the year returns to the MIST campus. Join thousands of graduates from every batch for a day of networking, nostalgia, and celebration.',
-    date: 'May 10, 2025',
-    readTime: '3 min read',
-    author: 'MISTAS Secretariat',
-    featured: true,
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: 2,
-    category: 'Achievement',
-    catColor: 'bg-amber-50 text-amber-700 border-amber-200',
-    title: 'Dr. Tahmina Rahman Wins Best Paper Award at NeurIPS 2024',
-    excerpt: 'MIST CSE alumna Dr. Tahmina Rahman (Batch 2005) has been awarded the Best Paper Award at NeurIPS 2024 for her groundbreaking work on energy-efficient large language models.',
-    date: 'Apr 22, 2025',
-    readTime: '4 min read',
-    author: 'Editorial Team',
-    featured: false,
-    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: 3,
-    category: 'Scholarship',
-    catColor: 'bg-forest-50 text-forest-700 border-forest-200',
-    title: 'MISTAS Merit Scholarship — Applications Open for 2025',
-    excerpt: 'MISTAS is offering 15 merit-based scholarships to current MIST undergraduate students. Sponsored by our distinguished alumni, the scholarship covers tuition for the full academic year.',
-    date: 'Apr 15, 2025',
-    readTime: '2 min read',
-    author: 'Scholarship Committee',
-    featured: false,
-    image: null,
-  },
-  {
-    id: 4,
-    category: 'Infrastructure',
-    catColor: 'bg-purple-50 text-purple-700 border-purple-200',
-    title: 'New Alumni Innovation Lab Inaugurated at MIST',
-    excerpt: 'Funded by a consortium of alumni donors, the new 4,000 sq ft Innovation Lab at MIST was inaugurated on April 1. The facility houses robotics, AI, and embedded systems workstations.',
-    date: 'Apr 1, 2025',
-    readTime: '5 min read',
-    author: 'Campus Reporter',
-    featured: false,
-    image: 'https://images.unsplash.com/photo-1581093806997-124204d9fa9d?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: 5,
-    category: 'Leadership',
-    catColor: 'bg-red-50 text-red-700 border-red-200',
-    title: 'New MISTAS Executive Council Elected for 2025–2027',
-    excerpt: 'The biennial MISTAS election has concluded with Major General Md Hakimuzzaman re-elected as President. The council will serve for the 2025–2027 term beginning June 1.',
-    date: 'Mar 20, 2025',
-    readTime: '3 min read',
-    author: 'Election Commission',
-    featured: false,
-    image: null,
-  },
-]
-
-const events = [
-  {
-    id: 1,
-    title: 'MISTAS Annual Reunion 2025',
-    type: 'Reunion',
-    typeColor: 'bg-blue-600',
-    date: 'Jul 12, 2025',
-    time: '10:00 AM',
-    location: 'MIST Campus, Mirpur Cantonment, Dhaka',
-    attendees: 800,
-    maxAttendees: 1200,
-    description: 'The biggest alumni gathering of the year. All batches welcome. Gala dinner, networking sessions, and special recognitions.',
-    featured: true,
-  },
-  {
-    id: 2,
-    title: 'Career & Tech Symposium 2025',
-    type: 'Seminar',
-    typeColor: 'bg-forest-600',
-    date: 'Jun 6, 2025',
-    time: '9:00 AM',
-    location: 'MIST Auditorium + Online (Hybrid)',
-    attendees: 340,
-    maxAttendees: 500,
-    description: 'Two-day symposium featuring talks from industry leaders, research presentations, and career fair with 30+ companies.',
-    featured: false,
-  },
-  {
-    id: 3,
-    title: 'AI & Robotics Workshop',
-    type: 'Workshop',
-    typeColor: 'bg-purple-600',
-    date: 'May 28, 2025',
-    time: '2:00 PM',
-    location: 'Innovation Lab, MIST',
-    attendees: 48,
-    maxAttendees: 60,
-    description: 'Hands-on workshop on applied machine learning and robotics for final year students and recent graduates.',
-    featured: false,
-  },
-  {
-    id: 4,
-    title: 'CSE Batch 2010 Reunion',
-    type: 'Reunion',
-    typeColor: 'bg-blue-600',
-    date: 'Aug 15, 2025',
-    time: '6:00 PM',
-    location: 'Hotel Radisson Blu, Dhaka',
-    attendees: 65,
-    maxAttendees: 120,
-    description: '15-year reunion for the CSE Class of 2010. Dinner, awards, and a special tribute to the founding batch.',
-    featured: false,
-  },
-  {
-    id: 5,
-    title: 'MIST Leadership Forum',
-    type: 'Seminar',
-    typeColor: 'bg-forest-600',
-    date: 'Sep 10, 2025',
-    time: '10:00 AM',
-    location: 'National Defence College, Dhaka',
-    attendees: 90,
-    maxAttendees: 200,
-    description: 'Annual leadership summit for military and civilian alumni in senior positions. Closed event — invite only.',
-    featured: false,
-  },
-  {
-    id: 6,
-    title: 'Bangladesh Engineering Innovation Awards',
-    type: 'Award',
-    typeColor: 'bg-gold-600',
-    date: 'Oct 5, 2025',
-    time: '5:00 PM',
-    location: 'Bangabandhu International Conference Centre, Dhaka',
-    attendees: 420,
-    maxAttendees: 600,
-    description: 'Annual awards ceremony honouring outstanding contributions by MIST alumni to engineering and national development.',
-    featured: false,
-  },
-]
 
 const gallery = [
   { src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=600', caption: 'Annual Reunion 2024', type: 'photo' },
@@ -314,9 +172,9 @@ export default function NewsEventsPage() {
                         <span>·</span>
                         <span>{item.author}</span>
                       </div>
-                      <button className="btn-primary w-fit flex items-center gap-2 text-sm">
+                      <Link to={`/news/${item.id}`} className="btn-primary w-fit flex items-center gap-2 text-sm">
                         Read Article <ArrowRight size={14} />
-                      </button>
+                      </Link>
                     </div>
                   </motion.div>
                 ))}
@@ -330,8 +188,8 @@ export default function NewsEventsPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
-                      className="group border border-forest-100 rounded-2xl hover:border-forest-300 hover:shadow-lg transition-all duration-300 overflow-hidden"
                     >
+                    <Link to={`/news/${item.id}`} className="block group border border-forest-100 rounded-2xl hover:border-forest-300 hover:shadow-lg transition-all duration-300 overflow-hidden">
                       {item.image && (
                         <div className="h-48 overflow-hidden bg-forest-900">
                           <img src={item.image} alt={item.title} className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
@@ -350,11 +208,12 @@ export default function NewsEventsPage() {
                             <span>{item.date}</span>
                             <span className="flex items-center gap-1"><Clock size={10} /> {item.readTime}</span>
                           </div>
-                          <button className="flex items-center gap-1.5 font-sans font-bold text-forest-700 hover:text-forest-900 transition-colors">
+                          <Link to={`/news/${item.id}`} className="flex items-center gap-1.5 font-sans font-bold text-forest-700 hover:text-forest-900 transition-colors">
                             Read <ChevronRight size={13} />
-                          </button>
+                          </Link>
                         </div>
                       </div>
+                    </Link>
                     </motion.div>
                   ))}
                 </div>
@@ -392,15 +251,9 @@ export default function NewsEventsPage() {
 
                 {/* Featured event */}
                 {filteredEvents.filter((e) => e.featured).map((event) => (
-                  <motion.div
-                    key={event.id}
-                    className="mb-8 bg-forest-900 text-white relative overflow-hidden"
-                  >
+                  <motion.div key={event.id} className="mb-8 bg-forest-900 text-white relative overflow-hidden rounded-2xl">
                     <div className="absolute inset-0 opacity-[0.04]"
-                      style={{
-                        backgroundImage: `linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)`,
-                        backgroundSize: '40px 40px',
-                      }}
+                      style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)`, backgroundSize: '40px 40px' }}
                     />
                     <div className="relative p-10 grid md:grid-cols-3 gap-8">
                       <div className="md:col-span-2">
@@ -415,22 +268,18 @@ export default function NewsEventsPage() {
                           <span className="flex items-center gap-2"><MapPin size={14} className="text-forest-400" /> {event.location}</span>
                           <span className="flex items-center gap-2"><Users size={14} className="text-forest-400" /> {event.attendees} / {event.maxAttendees} registered</span>
                         </div>
-                        <button className="btn-primary bg-white text-forest-900 hover:bg-forest-50 flex items-center gap-2">
-                          Register Now <ArrowRight size={14} />
-                        </button>
+                        <Link to={`/events/${event.id}`} className="btn-primary bg-white text-forest-900 hover:bg-forest-50 inline-flex items-center gap-2">
+                          View Details <ArrowRight size={14} />
+                        </Link>
                       </div>
                       <div className="flex items-center justify-center">
                         <div className="text-center">
-                          <div className="font-display text-7xl font-bold text-forest-600">{event.date.split(' ')[1].replace(',', '')}</div>
-                          <div className="font-mono text-sm text-forest-500 tracking-widest uppercase">{event.date.split(' ')[0]}</div>
-                          <div className="font-sans text-xs text-forest-600 mt-1">{event.date.split(' ')[2]}</div>
-                          {/* Progress bar */}
+                          <div className="font-display text-7xl font-bold text-forest-600">{event.dateDay}</div>
+                          <div className="font-mono text-sm text-forest-500 tracking-widest uppercase">{event.dateMonth}</div>
+                          <div className="font-sans text-xs text-forest-600 mt-1">{event.dateYear}</div>
                           <div className="mt-6">
                             <div className="w-32 h-1.5 bg-forest-800 mx-auto mb-2">
-                              <div
-                                className="h-full bg-forest-400"
-                                style={{ width: `${(event.attendees / event.maxAttendees) * 100}%` }}
-                              />
+                              <div className="h-full bg-forest-400" style={{ width: `${(event.attendees / event.maxAttendees) * 100}%` }} />
                             </div>
                             <div className="font-mono text-[10px] text-forest-500 tracking-widest">
                               {Math.round((event.attendees / event.maxAttendees) * 100)}% full
@@ -469,9 +318,9 @@ export default function NewsEventsPage() {
                             <span className="flex items-center gap-1"><Users size={10} /> {event.attendees} attending</span>
                           </div>
                         </div>
-                        <button className="flex-shrink-0 btn-outline text-xs py-2 px-5 flex items-center gap-1.5">
-                          Register <ChevronRight size={12} />
-                        </button>
+                        <Link to={`/events/${event.id}`} className="flex-shrink-0 btn-outline text-xs py-2 px-5 flex items-center gap-1.5">
+                          View Details <ChevronRight size={12} />
+                        </Link>
                       </div>
                     </motion.div>
                   ))}
