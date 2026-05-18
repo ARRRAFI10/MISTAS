@@ -14,12 +14,11 @@ export default function HomePage() {
       <HeroBanner />
       <WelcomeMessage />
       <StatsDashboard />
-      <QuickLinks />
       <NewsEvents />
       <AlumniSpotlight />
-
+      <QuickLinks />
       {/* Social Media Strip */}
-      <section className="py-12 border-t border-forest-100 bg-forest-50 overflow-hidden relative">
+      {/* <section className="py-12 border-t border-forest-100 bg-forest-50 overflow-hidden relative">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{
             backgroundImage: `radial-gradient(circle, #155515 1px, transparent 1px)`,
@@ -60,7 +59,7 @@ export default function HomePage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Banner */}
       <section className="py-20 bg-forest-900 relative overflow-hidden">
