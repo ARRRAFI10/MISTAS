@@ -1,4 +1,5 @@
-# MISTAS — MIST Alumni Association Website
+# MISTAS — MIST Alumni Society Website
+
 ## Frontend Setup Guide
 
 ---
@@ -44,6 +45,7 @@ mistas/
 - **npm** v9+ or **yarn** v1.22+
 
 Verify with:
+
 ```bash
 node --version
 npm --version
@@ -80,17 +82,18 @@ Output goes to `dist/` folder. Deploy this to any static host.
 
 ## 🌐 Pages Included
 
-| Route        | Page               | Sections Covered                                           |
-|--------------|--------------------|------------------------------------------------------------|
-| `/`          | Home               | Hero, Welcome, Stats Dashboard, Quick Links, News, Spotlight, Social, CTA |
-| `/about`     | About MISTAS       | Association info, Mission & Vision, Objectives, History Timeline, Council, Constitution |
-| `/directory` | Alumni Directory   | Search, Filters (dept/batch/country), Grid, Notable Alumni, Achievements |
+| Route        | Page             | Sections Covered                                                                        |
+| ------------ | ---------------- | --------------------------------------------------------------------------------------- |
+| `/`          | Home             | Hero, Welcome, Stats Dashboard, Quick Links, News, Spotlight, Social, CTA               |
+| `/about`     | About MISTAS     | Association info, Mission & Vision, Objectives, History Timeline, Council, Constitution |
+| `/directory` | Alumni Directory | Search, Filters (dept/batch/country), Grid, Notable Alumni, Achievements                |
 
 ---
 
 ## 🎨 Design System
 
 ### Color Palette (Forest Green)
+
 ```
 forest-50    #f0f7f0   (backgrounds)
 forest-200   #b3dbb3   (borders)
@@ -103,12 +106,14 @@ forest-950   #051805   (hero/dark sections)
 ```
 
 ### Typography
+
 - **Display / Headings:** Playfair Display (serif, editorial)
 - **Body text:** Source Serif 4 (readable serif)
 - **Labels / Mono:** JetBrains Mono (tracking, badges)
 - **UI / Sans:** DM Sans (buttons, nav, UI text)
 
 ### Unique Design Elements
+
 - `clip-corner` — cut corner motif on cards, buttons, avatars
 - Grid/dot patterns on dark sections
 - Horizontal line + label header pattern
@@ -120,14 +125,14 @@ forest-950   #051805   (hero/dark sections)
 
 ## 📦 Dependencies Used
 
-| Package                   | Purpose                              |
-|---------------------------|--------------------------------------|
-| react-router-dom          | Client-side routing                  |
-| lucide-react              | Icon library                         |
-| framer-motion             | (installed, ready for page transitions)|
-| react-countup             | (installed, alternative counter)     |
-| react-intersection-observer | (installed, for scroll animations) |
-| tailwindcss               | Utility-first CSS                    |
+| Package                     | Purpose                                 |
+| --------------------------- | --------------------------------------- |
+| react-router-dom            | Client-side routing                     |
+| lucide-react                | Icon library                            |
+| framer-motion               | (installed, ready for page transitions) |
+| react-countup               | (installed, alternative counter)        |
+| react-intersection-observer | (installed, for scroll animations)      |
+| tailwindcss                 | Utility-first CSS                       |
 
 ---
 
@@ -137,9 +142,11 @@ forest-950   #051805   (hero/dark sections)
 
 1. Create `src/pages/NewPage.jsx`
 2. Add route in `src/App.jsx`:
+
 ```jsx
 <Route path="new-page" element={<NewPage />} />
 ```
+
 3. Add link in `Navbar.jsx` navItems array
 
 ### Adding a New Section to Home
@@ -150,24 +157,25 @@ forest-950   #051805   (hero/dark sections)
 ### Connecting to a Backend / API
 
 Replace mock data arrays (in each page/component) with `fetch()` or `axios` calls:
+
 ```jsx
 useEffect(() => {
-  fetch('/api/alumni')
-    .then(r => r.json())
-    .then(data => setAlumni(data))
-}, [])
+  fetch("/api/alumni")
+    .then((r) => r.json())
+    .then((data) => setAlumni(data));
+}, []);
 ```
 
 ---
 
 ## 🌍 Deployment Options
 
-| Platform     | Command                    | Notes                        |
-|--------------|----------------------------|------------------------------|
-| Vercel       | `vercel deploy`            | Auto-detects Vite             |
-| Netlify      | Drag `dist/` folder        | Set build cmd: `npm run build`|
-| GitHub Pages | Use `vite-plugin-github-pages` | Set `base` in vite.config  |
-| cPanel       | Upload `dist/` contents    | Set root to public_html       |
+| Platform     | Command                        | Notes                          |
+| ------------ | ------------------------------ | ------------------------------ |
+| Vercel       | `vercel deploy`                | Auto-detects Vite              |
+| Netlify      | Drag `dist/` folder            | Set build cmd: `npm run build` |
+| GitHub Pages | Use `vite-plugin-github-pages` | Set `base` in vite.config      |
+| cPanel       | Upload `dist/` contents        | Set root to public_html        |
 
 ---
 
@@ -186,4 +194,4 @@ All pages follow the same pattern: import `Layout`, use `Section` + `SectionHead
 
 ---
 
-*Built with React 18 + Vite 5 + Tailwind CSS 3*
+_Built with React 18 + Vite 5 + Tailwind CSS 3_

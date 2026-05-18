@@ -52,7 +52,7 @@ export default function Navbar() {
     <>
       {/* Top ribbon */}
       <div className="bg-forest-900 text-forest-200 text-xs font-mono tracking-widest py-1.5 text-center hidden md:block">
-        MILITARY INSTITUTE OF SCIENCE AND TECHNOLOGY — ALUMNI ASSOCIATION
+        MILITARY INSTITUTE OF SCIENCE AND TECHNOLOGY — ALUMNI SOCIETY
       </div>
 
       <header
@@ -78,7 +78,7 @@ export default function Navbar() {
                   MISTAS
                 </div>
                 <div className="font-mono text-[9px] text-forest-500 tracking-[0.2em] uppercase">
-                  MIST Alumni Association
+                  MIST Alumni Society
                 </div>
               </div>
             </Link>
@@ -137,10 +137,7 @@ export default function Navbar() {
               >
                 Sign In
               </Link>
-              <Link
-                to="/register"
-                className="btn-primary text-xs py-2.5 px-5"
-              >
+              <Link to="/register" className="btn-primary text-xs py-2.5 px-5">
                 Join MISTAS
               </Link>
             </div>
