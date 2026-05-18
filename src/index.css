@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --forest-primary: #155515;
+    --forest-dark: #0a2d0a;
+    --forest-mid: #1e6b1e;
+    --forest-light: #2d7d2d;
+    --gold: #d4a017;
+    --cream: #faf8f3;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-forest-900 font-body;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgba(21, 85, 21, 0.2);
+    color: #0a2d0a;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f0f7f0;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #155515;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply font-mono text-xs tracking-[0.25em] uppercase text-forest-500 font-medium;
+  }
+
+  .display-heading {
+    @apply font-display text-forest-900 leading-[1.05];
+  }
+
+  .body-text {
+    @apply font-body text-forest-700 leading-relaxed;
+  }
+
+  .btn-primary {
+    @apply bg-forest-700 text-white font-sans font-medium text-sm tracking-wide px-7 py-3.5
+           hover:bg-forest-800 transition-all duration-300 relative overflow-hidden rounded-2xl;
+  }
+
+  .btn-outline {
+    @apply border border-forest-700 text-forest-700 font-sans font-medium text-sm tracking-wide px-7 py-3.5
+           hover:bg-forest-700 hover:text-white transition-all duration-300 rounded-2xl;
+  }
+
+  .card-hover {
+    @apply transition-all duration-400 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .divider-ornate {
+    @apply flex items-center gap-4;
+  }
+
+  .divider-ornate::before,
+  .divider-ornate::after {
+    content: '';
+    @apply flex-1 h-px bg-forest-200;
+  }
+}
+
+/* Animated underline */
+.animated-underline {
+  position: relative;
+}
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--forest-primary);
+  transition: width 0.3s ease;
+}
+.animated-underline:hover::after,
+.animated-underline[aria-current="page"]::after {
+  width: 100%;
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* Staggered animation helpers */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+.animate-on-load {
+  opacity: 0;
+  animation: slideUp 0.7s ease forwards;
+}
+
+/* Custom clip paths */
+.clip-corner {
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+}
+
+.clip-corner-lg {
+  clip-path: polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%);
+}
+
+/* Ambient floating blobs — CSS only, GPU-safe (transform + opacity only) */
+@keyframes float-ambient {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-22px) scale(1.03); }
+}
+
+@keyframes float-ambient-alt {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(18px) scale(0.97); }
+}
+
+@keyframes float-ambient-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-14px) rotate(1.5deg); }
+  66% { transform: translateY(10px) rotate(-1deg); }
+}
+
+.animate-float-ambient {
+  animation: float-ambient 20s ease-in-out infinite;
+}
+.animate-float-ambient-alt {
+  animation: float-ambient-alt 25s ease-in-out infinite;
+}
+.animate-float-ambient-slow {
+  animation: float-ambient-slow 30s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-ambient,
+  .animate-float-ambient-alt,
+  .animate-float-ambient-slow {
+    animation: none;
+  }
+}
