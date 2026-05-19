@@ -251,7 +251,7 @@ export default function CommunityPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <div className="bg-forest-950 pt-24 pb-0 relative overflow-hidden">
+      <div className="bg-forest-950 pt-24 pb-20 relative overflow-hidden">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.035 }}
@@ -282,24 +282,17 @@ export default function CommunityPage() {
             </span>
           </motion.div>
 
-          <div className="grid lg:grid-cols-12 gap-8 items-end pb-16">
+          <div className="grid lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7">
               <motion.div
-                initial={{ y: 50, opacity: 0 }}
+                initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
               >
-                <div className="font-display font-bold tracking-tight leading-[0.85]">
-                  <span className="block text-[96px] md:text-[120px] lg:text-[140px] text-white">
-                    Global
-                  </span>
-                  <span className="block text-[96px] md:text-[120px] lg:text-[140px] italic text-forest-400">
-                    MIST
-                  </span>
-                  <span className="block text-[96px] md:text-[120px] lg:text-[140px] text-white">
-                    Family.
-                  </span>
-                </div>
+                <h1 className="font-display text-6xl md:text-7xl font-bold text-white leading-tight mb-4">
+                  Global <em className="italic text-forest-400">MIST</em>{" "}
+                  Family.
+                </h1>
               </motion.div>
             </div>
             <motion.div

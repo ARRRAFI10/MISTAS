@@ -303,7 +303,7 @@ export default function DirectoryPage() {
       {/* ══════════════════════════════
           HERO
       ══════════════════════════════ */}
-      <section className="relative bg-forest-950 overflow-hidden">
+      <section className="relative bg-forest-950 pt-24 pb-20 overflow-hidden">
         {/* Grid */}
         <div
           className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -327,7 +327,7 @@ export default function DirectoryPage() {
           className="absolute -left-32 bottom-0 w-[500px] h-[500px] border-[60px] border-forest-600 rounded-full pointer-events-none"
         />
 
-        <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-16">
+        <div className="relative max-w-7xl mx-auto px-6">
           {/* Breadcrumb */}
           <motion.div
             initial={{ opacity: 0 }}

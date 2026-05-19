@@ -84,7 +84,7 @@ export default function StatsDashboard() {
                  any bright spots in the background image 
                */}
               <div className="font-display text-[6rem] md:text-[8rem] lg:text-[9rem] font-bold text-white leading-none tracking-tighter group-hover:text-forest-100 transition-colors duration-700 drop-shadow-2xl">
-                12,847
+                7,480
                 <span className="text-forest-500 text-[3rem] md:text-[5rem] lg:text-[6rem] align-top">
                   +
                 </span>
