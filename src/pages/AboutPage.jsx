@@ -333,7 +333,7 @@ export default function AboutPage() {
                   <p className="font-body text-forest-700 text-lg leading-relaxed">
                     Since our establishment in 2004, MISTAS has evolved into a
                     dynamic, inclusive, and globally recognized network. Today,
-                    we represent over 12,000 accomplished engineers, officers,
+                    we represent over 7,480 accomplished engineers, officers,
                     researchers, and leaders — many serving in the military,
                     civil service, and private sectors across more than 85
                     countries worldwide.
@@ -349,7 +349,7 @@ export default function AboutPage() {
                       {
                         icon: Users,
                         label: "Alumni",
-                        value: "12,847+",
+                        value: "7,840+",
                         color: "bg-blue-50 text-blue-700",
                       },
                       {
@@ -361,7 +361,7 @@ export default function AboutPage() {
                       {
                         icon: MapPin,
                         label: "Countries",
-                        value: "85+",
+                        value: "20+",
                         color: "bg-amber-50 text-amber-700",
                       },
                     ].map(({ icon: Icon, label, value, color }) => (

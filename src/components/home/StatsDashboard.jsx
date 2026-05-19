@@ -104,7 +104,7 @@ export default function StatsDashboard() {
                 <span>Countries Reached</span>
               </div>
               <div className="font-display text-6xl md:text-7xl font-bold text-white mb-4 tracking-tighter drop-shadow-2xl">
-                40<span className="text-forest-500">+</span>
+                20<span className="text-forest-500">+</span>
               </div>
               <p className="font-sans text-sm text-white/90 leading-relaxed max-w-[200px] drop-shadow-md font-medium">
                 A truly global footprint, from Silicon Valley to Singapore.
