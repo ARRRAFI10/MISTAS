@@ -89,30 +89,42 @@ const GraduationCap = (props) => (
 );
 
 const milestones = [
-  { year: "1998", event: "MIST Founded by the Bangladesh Army", icon: Shield },
   {
-    year: "2002",
-    event: "First batch of graduates — 68 engineers",
+    year: "19 Apr 1998",
+    event:
+      "Military Institute of Science and Technology (MIST) was established. The foundation stone was unveiled by General Mustafizur Rahman, Bir Bikrom, ndc, psc, CA.",
+    icon: Shield,
+  },
+  {
+    year: "1999",
+    event:
+      "MIST commenced academic activities with an initial intake of 40 Army officers in the Department of Civil Engineering (CE).",
     icon: GraduationCap,
   },
-  { year: "2004", event: "MISTAS formally established", icon: Milestone },
   {
-    year: "2008",
-    event: "First annual reunion event with 500+ attendees",
+    year: "2001",
+    event:
+      "Department of Computer Science and Engineering (CSE) was established.",
+    icon: Milestone,
+  },
+  {
+    year: "2003",
+    event:
+      "MIST began admitting civilian students, marking a significant expansion of its academic mission.",
     icon: Users,
   },
   {
-    year: "2012",
-    event: "International chapter launched in North America",
+    year: "2003–2016",
+    event:
+      "A total of 11 additional departments in Engineering and Architecture were established. Departments include EECE, ME, and the Department of Science and Humanities supporting all academic departments.",
     icon: MapPin,
   },
-  { year: "2016", event: "5,000 alumni milestone reached", icon: Award },
   {
-    year: "2019",
-    event: "Digital portal and online directory launched",
-    icon: BookOpen,
+    year: "2026",
+    event:
+      "MIST plans to commence academic activities in Department of Urban and Regional Planning (URP), Department of Mathematics, and Department of Chemistry.",
+    icon: Award,
   },
-  { year: "2024", event: "12,000+ alumni across 85+ countries", icon: Target },
 ];
 
 export default function AboutPage() {
@@ -254,74 +266,128 @@ export default function AboutPage() {
       </div>
 
       {/* About Section */}
-      <Section id="association" className="py-24 bg-white relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-7">
-              <div className="mb-10">
-                <div className="w-12 h-0.5 bg-forest-600 mb-6" />
-                <h2 className="font-display text-4xl md:text-5xl text-forest-900 font-bold mb-6">
-                  MIST Alumni Society
-                </h2>
-                <div className="space-y-6 font-body text-forest-700 text-lg leading-relaxed">
-                  <p>
-                    The Military Institute of Science and Technology (MIST)
-                    Alumni Association — known as MISTAS — is the official body
-                    representing graduates of MIST, one of Bangladesh's premier
-                    technical institutions.
-                  </p>
-                  <p>
-                    Founded in 2004, MISTAS has grown into a vibrant, global
-                    network of over 12,000 engineers, officers, researchers, and
-                    leaders serving in military, civil service, and private
-                    sectors across the globe.
-                  </p>
-                </div>
-              </div>
+      <Section
+        id="association"
+        className="py-32 bg-white relative overflow-hidden"
+      >
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-forest-50 rounded-full blur-3xl opacity-50" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-forest-50 rounded-full blur-3xl opacity-40" />
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-                {[
-                  { icon: Users, label: "Alumni Base", value: "12,847+" },
-                  { icon: Award, label: "Excellence", value: "25 Years" },
-                  { icon: MapPin, label: "Countries", value: "85+" },
-                ].map(({ icon: Icon, label, value }) => (
-                  <div key={label}>
-                    <div className="font-display text-3xl font-bold text-forest-800 mb-1">
-                      {value}
-                    </div>
-                    <div className="font-mono text-[10px] text-forest-400 tracking-widest uppercase">
-                      {label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="lg:col-span-5">
-              <div className="relative p-1 border border-forest-100 rounded-2xl overflow-hidden shadow-2xl group">
-                <div className="aspect-[4/5] bg-forest-900 overflow-hidden rounded-2xl">
-                  <img
-                    src="https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&q=80&w=600"
-                    alt="MIST Campus"
-                    className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700"
-                  />
-                </div>
-                {/* Floating card */}
-                <div className="absolute bottom-8 -left-8 bg-white p-6 shadow-xl max-w-[240px] rounded-2xl hidden md:block border border-forest-50">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 bg-forest-700 rounded-full flex items-center justify-center text-white">
-                      <Users size={14} />
-                    </div>
-                    <span className="font-display font-bold text-forest-900">
-                      MISTAS Portal
-                    </span>
-                  </div>
-                  <p className="text-xs text-forest-600 font-sans leading-relaxed">
-                    Connecting thousands of graduates across disciplines and
-                    generations.
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          {/* Header */}
+          <div className="mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center gap-3 mb-4"
+            >
+              <div className="w-12 h-0.5 bg-forest-600" />
+              <span className="font-mono text-xs tracking-[0.3em] uppercase text-forest-500 font-semibold">
+                About Our Organization
+              </span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-display text-5xl md:text-6xl text-forest-900 font-bold"
+            >
+              MIST Alumni Society
+            </motion.h2>
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-16 items-start">
+            {/* Content Section */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:col-span-12"
+            >
+              <div className="space-y-8">
+                <div>
+                  <h3 className="font-display text-2xl text-forest-900 font-bold mb-4 flex items-center gap-3">
+                    <div className="w-1.5 h-6 bg-forest-600 rounded-full" />
+                    Our Identity
+                  </h3>
+                  <p className="font-body text-forest-700 text-lg leading-relaxed">
+                    The Military Institute of Science and Technology (MIST)
+                    Alumni Association —{" "}
+                    <em className="font-semibold text-forest-900">MISTAS</em> —
+                    is the official, independent body representing graduates of
+                    MIST, one of Bangladesh's premier technical institutions and
+                    a beacon of engineering excellence.
                   </p>
                 </div>
+
+                <div>
+                  <h3 className="font-display text-2xl text-forest-900 font-bold mb-4 flex items-center gap-3">
+                    <div className="w-1.5 h-6 bg-forest-600 rounded-full" />
+                    Our Journey
+                  </h3>
+                  <p className="font-body text-forest-700 text-lg leading-relaxed">
+                    Since our establishment in 2004, MISTAS has evolved into a
+                    dynamic, inclusive, and globally recognized network. Today,
+                    we represent over 12,000 accomplished engineers, officers,
+                    researchers, and leaders — many serving in the military,
+                    civil service, and private sectors across more than 85
+                    countries worldwide.
+                  </p>
+                </div>
+
+                <div className="pt-8 border-t border-forest-100">
+                  <h3 className="font-display text-2xl text-forest-900 font-bold mb-6">
+                    Global Reach & Impact
+                  </h3>
+                  <div className="grid grid-cols-3 gap-6">
+                    {[
+                      {
+                        icon: Users,
+                        label: "Alumni",
+                        value: "12,847+",
+                        color: "bg-blue-50 text-blue-700",
+                      },
+                      {
+                        icon: Award,
+                        label: "Founded",
+                        value: "2004",
+                        color: "bg-emerald-50 text-emerald-700",
+                      },
+                      {
+                        icon: MapPin,
+                        label: "Countries",
+                        value: "85+",
+                        color: "bg-amber-50 text-amber-700",
+                      },
+                    ].map(({ icon: Icon, label, value, color }) => (
+                      <motion.div
+                        key={label}
+                        whileHover={{ scale: 1.05 }}
+                        className={`${color} p-6 rounded-xl border border-current border-opacity-10 shadow-sm hover:shadow-md transition-all duration-300`}
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <Icon size={18} className="opacity-60" />
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-widest opacity-70">
+                            {label}
+                          </span>
+                        </div>
+                        <div className="font-display text-3xl font-bold">
+                          {value}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            </motion.div>
+
+          
+            
           </div>
         </div>
       </Section>
@@ -478,7 +544,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeader
             label="Governance"
-            title="Executive Council"
+            title="Council of MISTAS"
             subtitle="The leadership team dedicated to serving the alumni network."
             center
           />

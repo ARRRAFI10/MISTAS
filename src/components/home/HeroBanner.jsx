@@ -17,7 +17,7 @@ const SLIDES = [
     location: "Australia",
   },
   {
-    image: "/slider1.png",
+    image: "/slider4.jpg",
     title: "GLOBAL NETWORK",
     subtitle: "12,000+",
     location: "Alumni across 85+ countries",

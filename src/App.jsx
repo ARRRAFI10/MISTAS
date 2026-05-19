@@ -1,4 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 import Layout from './components/layout/Layout'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
@@ -25,6 +32,7 @@ import AlumniProfilePage from './pages/AlumniProfilePage'
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
