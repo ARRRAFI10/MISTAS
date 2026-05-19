@@ -17,17 +17,17 @@ const SLIDES = [
     location: "Australia",
   },
   {
-    image: "/slider4.jpg",
-    title: "GLOBAL NETWORK",
-    subtitle: "12,000+",
+    image: "/Event.png",
+    title: "MATH Olympiad",
+    subtitle: "2025",
     location: "Alumni across 85+ countries",
   },
-  {
-    image: "/slider3.jpg",
-    title: "MIST",
-    subtitle: "Automation and Robotics",
-    location: "Dhaka, Bangladesh",
-  },
+  // {
+  //   image: "/slider3.jpg",
+  //   title: "MIST",
+  //   subtitle: "Automation and Robotics",
+  //   location: "Dhaka, Bangladesh",
+  // },
 ];
 
 export default function HeroBanner() {

@@ -110,17 +110,17 @@ export default function NewsEventsPage() {
         </div>
 
         {/* Tab nav at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 border-t border-white/5">
+        <div className="absolute bottom-0 left-0 right-0 border-t border-white/20 bg-forest-950/80 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex gap-8">
               {tabs.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`py-4 font-mono text-[10px] tracking-[0.3em] uppercase border-b-2 transition-all ${
+                  className={`py-4 font-mono text-xs tracking-[0.3em] uppercase border-b-2 transition-all ${
                     activeTab === tab
                       ? 'text-white border-forest-400'
-                      : 'text-forest-500 border-transparent hover:text-forest-300'
+                      : 'text-white/50 border-transparent hover:text-white/80'
                   }`}
                 >
                   {tab}

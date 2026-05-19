@@ -12,7 +12,9 @@ import AboutPage from './pages/AboutPage'
 import DirectoryPage from './pages/DirectoryPage'
 import EngagementPage from './pages/EngagementPage'
 import CareersPage from './pages/CareersPage'
-import NewsEventsPage from './pages/NewsEventsPage'
+import NewsPage from './pages/NewsPage'
+import EventsPage from './pages/EventsPage'
+import ArchivePage from './pages/ArchivePage'
 import NewsDetailPage from './pages/NewsDetailPage'
 import EventDetailPage from './pages/EventDetailPage'
 import CommunityPage from './pages/CommunityPage'
@@ -40,9 +42,11 @@ export default function App() {
           <Route path="directory" element={<DirectoryPage />} />
           <Route path="engagement" element={<EngagementPage />} />
           <Route path="careers" element={<CareersPage />} />
-          <Route path="news" element={<NewsEventsPage />} />
+          <Route path="news" element={<NewsPage />} />
           <Route path="news/:id" element={<NewsDetailPage />} />
+          <Route path="events" element={<EventsPage />} />
           <Route path="events/:id" element={<EventDetailPage />} />
+          <Route path="archive" element={<ArchivePage />} />
           <Route path="community" element={<CommunityPage />} />
           <Route path="community/batch" element={<CommunityBatchPage />} />
           <Route path="community/batch/:year" element={<CommunityBatchDetailPage />} />

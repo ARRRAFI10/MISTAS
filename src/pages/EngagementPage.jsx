@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Users, BookOpen, Video, MessageSquare, ArrowRight, CheckCircle,
   Calendar, ChevronRight, Handshake, Lightbulb, Star, Clock,
-  Globe, Mail, MapPin, Mic, PenSquare, Rss, TrendingUp, Award
+  Globe, Mail, MapPin, Mic, PenSquare, Rss, TrendingUp, Award, X, ThumbsUp, Share2
 } from 'lucide-react'
 import { Section, SectionHeader, Tag } from '../components/ui'
 
@@ -132,38 +132,132 @@ const sessions = [
 
 const forumPosts = [
   {
+    id: 1,
     title: 'How I landed a FAANG job from Dhaka — My 8-month journey',
-    author: 'Nazmus Sakib · CSE 2012',
+    author: 'Nazmus Sakib',
+    dept: 'CSE',
+    batch: '2012',
     category: 'Career',
+    excerpt: 'From late-night LeetCode sessions to negotiating a $180K package — a raw, step-by-step account of everything that worked and what didn\'t in my FAANG journey from Dhaka.',
     reads: 1240,
     comments: 47,
     hot: true,
+    featured: true,
+    readTime: '12 min',
+    tags: ['FAANG', 'Interview Prep', 'Abroad'],
   },
   {
+    id: 2,
     title: 'GRE preparation resources for MIST graduates heading to the US',
-    author: 'Dr. Tahmina Rahman · CSE 2005',
+    author: 'Dr. Tahmina Rahman',
+    dept: 'CSE',
+    batch: '2005',
     category: 'Higher Studies',
+    excerpt: 'A curated list of free and paid resources, study schedules, and score targets that helped me gain admission to top-10 US grad programs as a MIST alumna.',
     reads: 892,
     comments: 31,
     hot: false,
+    featured: false,
+    readTime: '8 min',
+    tags: ['GRE', 'Grad School', 'USA'],
   },
   {
-    title: 'PE Exam (USA) — A guide for Bangladeshi Civil Engineers',
-    author: 'Eng. Farid Hossain · CE 1998',
+    id: 3,
+    title: 'PE Exam (USA) — A complete guide for Bangladeshi Civil Engineers',
+    author: 'Eng. Farid Hossain',
+    dept: 'CE',
+    batch: '1998',
     category: 'Certifications',
+    excerpt: 'Everything you need to know about the PE exam pathway, state licensing boards, and how your MIST civil engineering degree translates to US professional credentials.',
     reads: 673,
     comments: 22,
     hot: false,
+    featured: false,
+    readTime: '10 min',
+    tags: ['PE Exam', 'Civil Eng.', 'USA License'],
   },
   {
+    id: 4,
     title: 'Starting a tech startup from Bangladesh — lessons learned',
-    author: 'Arif Hossain · CSE 2010',
+    author: 'Arif Hossain',
+    dept: 'CSE',
+    batch: '2010',
     category: 'Entrepreneurship',
+    excerpt: 'Three failed pivots, one successful exit, and what I wish I knew before founding DataBridge AI. Honest lessons on fundraising, team-building, and Bangladesh\'s startup ecosystem.',
     reads: 1105,
     comments: 58,
     hot: true,
+    featured: false,
+    readTime: '15 min',
+    tags: ['Startup', 'Fundraising', 'AI'],
+  },
+  {
+    id: 5,
+    title: 'Women in STEM at MIST and beyond — breaking barriers',
+    author: 'Lt. Col. Shirin Akter',
+    dept: 'Naval',
+    batch: '2006',
+    category: 'Career',
+    excerpt: 'From being one of five women in my batch to leading engineering divisions in the Bangladesh Navy — a journey through stereotypes, breakthroughs, and the power of community.',
+    reads: 780,
+    comments: 35,
+    hot: false,
+    featured: false,
+    readTime: '9 min',
+    tags: ['Women in STEM', 'Leadership', 'Military'],
+  },
+  {
+    id: 6,
+    title: 'Research vs Industry — making the right choice after MIST',
+    author: 'Dr. Anika Sultana',
+    dept: 'ME',
+    batch: '2007',
+    category: 'Career',
+    excerpt: 'After 7 years at MIT Lincoln Lab, here\'s my framework for weighing research vs industry for fresh MIST graduates. The answer depends on more than just salary.',
+    reads: 950,
+    comments: 41,
+    hot: true,
+    featured: false,
+    readTime: '11 min',
+    tags: ['Research', 'Industry', 'Career Path'],
   },
 ]
+
+const discussionCategories = ['All', 'Career', 'Higher Studies', 'Certifications', 'Entrepreneurship']
+
+const postDiscussions = {
+  1: [
+    { id: 1, author: 'Tanvir Ahmed', dept: 'CSE', batch: '2015', initials: 'TA', time: '2 days ago', likes: 14, text: 'This is incredibly helpful! How did you handle the system design rounds specifically? I\'ve been struggling with distributed systems questions.', isAuthor: false },
+    { id: 2, author: 'Nadia Islam', dept: 'EEE', batch: '2018', initials: 'NI', time: '1 day ago', likes: 9, text: 'The negotiation part really resonated. Most of us undervalue ourselves when it comes to offers from abroad.', isAuthor: false },
+    { id: 3, author: 'Nazmus Sakib', dept: 'CSE', batch: '2012', initials: 'NS', time: '23h ago', likes: 31, text: 'For system design I relied on Grokking the System Design Interview and drew analogies from our distributed systems coursework at MIST. Happy to do a follow-up post on that!', isAuthor: true },
+    { id: 4, author: 'Rashed Khan', dept: 'CSE', batch: '2016', initials: 'RK', time: '18h ago', likes: 5, text: 'Did your MIST CGPA matter at all during the process? I\'m worried mine might be too low for the resume screen.', isAuthor: false },
+  ],
+  2: [
+    { id: 1, author: 'Farhana Haque', dept: 'CSE', batch: '2019', initials: 'FH', time: '5 days ago', likes: 7, text: 'Would these resources also work for MS in Canada or UK, or are they specifically for the US GRE track?', isAuthor: false },
+    { id: 2, author: 'Dr. Tahmina Rahman', dept: 'CSE', batch: '2005', initials: 'TR', time: '4 days ago', likes: 22, text: 'Most are US-focused but Magoosh and the ETS official guide are universally useful. UK programs often don\'t require GRE at all — check each university\'s specific requirements!', isAuthor: true },
+    { id: 3, author: 'Imran Hossain', dept: 'ME', batch: '2017', initials: 'IH', time: '3 days ago', likes: 11, text: 'I used Manhattan Prep and scored 328. Can confirm the 60-day schedule in this post is doable if you\'re disciplined about it.', isAuthor: false },
+  ],
+  3: [
+    { id: 1, author: 'Sajid Alam', dept: 'CE', batch: '2008', initials: 'SA', time: '1 week ago', likes: 8, text: 'Which US states are most accessible for Bangladeshi CE graduates in terms of license reciprocity and credential recognition?', isAuthor: false },
+    { id: 2, author: 'Eng. Farid Hossain', dept: 'CE', batch: '1998', initials: 'FH', time: '6 days ago', likes: 19, text: 'Texas, Florida, and Georgia are generally more accessible. NCEES credential evaluation is your mandatory first step regardless of state. I can share my evaluation report template.', isAuthor: true },
+    { id: 3, author: 'Mithila Chowdhury', dept: 'CE', batch: '2011', initials: 'MC', time: '5 days ago', likes: 12, text: 'Currently going through this process in Virginia. Happy to share my timeline and paperwork checklist if anyone needs it — took me 14 months from MIST transcript to PE stamp.', isAuthor: false },
+  ],
+  4: [
+    { id: 1, author: 'Sabbir Rahman', dept: 'CSE', batch: '2013', initials: 'SR', time: '3 days ago', likes: 13, text: 'What was the fundraising environment like for a Dhaka-based AI startup in 2020-21? I\'m thinking of starting something similar now.', isAuthor: false },
+    { id: 2, author: 'Zainab Ahmed', dept: 'CSE', batch: '2014', initials: 'ZA', time: '2 days ago', likes: 20, text: 'The pivot stories are what I needed to read. We keep romanticizing startups and forgetting that failure is part of the process.', isAuthor: false },
+    { id: 3, author: 'Arif Hossain', dept: 'CSE', batch: '2010', initials: 'AH', time: '1 day ago', likes: 37, text: 'Local angels were scarce in 2020. We had to go to Singapore-based VCs for our seed round. The ecosystem has improved significantly since — BD Venture and others are much more active now.', isAuthor: true },
+  ],
+  5: [
+    { id: 1, author: 'Mehnaz Parveen', dept: 'CSE', batch: '2020', initials: 'MP', time: '4 days ago', likes: 17, text: 'As a current female student at MIST, this is so inspiring. Did you face any specific institutional challenges during your time here?', isAuthor: false },
+    { id: 2, author: 'Lt. Col. Shirin Akter', dept: 'Naval', batch: '2006', initials: 'SA', time: '3 days ago', likes: 41, text: 'Being taken seriously in the cadet culture was the hardest part. But the technical rigor at MIST prepared me better than my peers expected. Proving that through consistent work is the most powerful response.', isAuthor: true },
+    { id: 3, author: 'Sadia Malik', dept: 'EEE', batch: '2016', initials: 'SM', time: '2 days ago', likes: 15, text: 'The MISTAS Women in STEM initiative started because of stories like this. We\'re building a mentorship sub-group specifically for female alumni and current students.', isAuthor: false },
+  ],
+  6: [
+    { id: 1, author: 'Hasan Mahmud', dept: 'ME', batch: '2018', initials: 'HM', time: '6 days ago', likes: 10, text: 'How do you handle the publish-or-perish culture in research while also wanting financial stability early in your career?', isAuthor: false },
+    { id: 2, author: 'Karim Uddin', dept: 'CSE', batch: '2019', initials: 'KU', time: '5 days ago', likes: 8, text: 'A comparison of progression timelines in both paths would be really helpful. How long to reach "senior" level in each track?', isAuthor: false },
+    { id: 3, author: 'Dr. Anika Sultana', dept: 'ME', batch: '2007', initials: 'AS', time: '4 days ago', likes: 29, text: 'In research you trade early salary for intellectual freedom and long-term impact. At senior researcher level (~year 8-10) compensation is competitive with industry. I\'ll do a follow-up with a full timeline comparison!', isAuthor: true },
+  ],
+}
 
 const mentorshipBenefits = [
   'One-on-one career guidance sessions',
@@ -177,6 +271,15 @@ const mentorshipBenefits = [
 export default function EngagementPage() {
   const [mentorTab, setMentorTab] = useState('find')
   const [formData, setFormData] = useState({ name: '', email: '', dept: '', batch: '', goal: '' })
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedPost, setSelectedPost] = useState(null)
+  const [replyText, setReplyText] = useState('')
+
+  const featuredPost = activeCategory === 'All' ? forumPosts.find(p => p.featured) : null
+  const filteredPosts = forumPosts.filter(p => {
+    const matchesCategory = activeCategory === 'All' || p.category === activeCategory
+    return matchesCategory && !(activeCategory === 'All' && p.featured)
+  })
 
   return (
     <>
@@ -518,7 +621,7 @@ export default function EngagementPage() {
       {/* ── Knowledge Sharing Forum ───────────────────────────────── */}
       <section id="knowledge" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
             <SectionHeader
               label="Knowledge Hub"
               title="Alumni Insights & Discussions"
@@ -529,36 +632,110 @@ export default function EngagementPage() {
             </Link>
           </div>
 
+          {/* Category Filters */}
+          <div className="flex flex-wrap gap-2 mb-10">
+            {discussionCategories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-200 border ${
+                  activeCategory === cat
+                    ? 'bg-forest-800 text-white border-forest-800'
+                    : 'bg-white text-forest-500 border-forest-200 hover:border-forest-400 hover:text-forest-700'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Featured Post */}
+          {featuredPost && (
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              onClick={() => setSelectedPost(featuredPost)}
+              className="mb-8 group p-8 border-2 border-forest-100 rounded-2xl hover:border-forest-300 hover:shadow-xl transition-all duration-300 cursor-pointer bg-forest-50/30 relative overflow-hidden"
+            >
+              <div className="absolute top-5 right-5">
+                <span className="text-[9px] font-mono tracking-widest uppercase text-amber-600 bg-amber-50 border border-amber-200 px-2 py-0.5">Featured</span>
+              </div>
+              <div className="flex items-start gap-5">
+                <div className="w-12 h-12 bg-forest-900 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Lightbulb size={20} className="text-gold-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-[10px] font-mono tracking-widest uppercase text-forest-600 bg-forest-100 border border-forest-200 px-2 py-0.5">{featuredPost.category}</span>
+                    <span className="text-[10px] font-sans text-forest-400 flex items-center gap-1"><Clock size={10} /> {featuredPost.readTime} read</span>
+                    {featuredPost.hot && (
+                      <span className="text-[9px] font-mono tracking-widest uppercase text-red-500 bg-red-50 border border-red-100 px-2 py-0.5">Trending</span>
+                    )}
+                  </div>
+                  <h3 className="font-sans font-bold text-forest-900 text-xl mb-3 group-hover:text-forest-700 transition-colors">{featuredPost.title}</h3>
+                  <p className="font-body text-forest-500 text-sm leading-relaxed mb-4 max-w-3xl">{featuredPost.excerpt}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {featuredPost.tags.map(tag => (
+                      <span key={tag} className="text-[10px] font-mono text-forest-500 bg-white border border-forest-200 px-2 py-0.5">{tag}</span>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-7 h-7 bg-forest-700 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-[9px] font-bold text-white">{featuredPost.author.split(' ').filter(w => /^[A-Z]/.test(w)).map(w => w[0]).join('').slice(0, 2)}</span>
+                      </div>
+                      <span className="font-sans text-xs text-forest-600 font-medium">{featuredPost.author} · {featuredPost.dept} {featuredPost.batch}</span>
+                    </div>
+                    <div className="hidden md:flex items-center gap-5 text-xs text-forest-400 flex-shrink-0">
+                      <span className="flex items-center gap-1.5"><Rss size={11} /> {featuredPost.reads.toLocaleString()} reads</span>
+                      <span className="flex items-center gap-1.5"><MessageSquare size={11} /> {featuredPost.comments} comments</span>
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight size={18} className="text-forest-300 group-hover:text-forest-600 flex-shrink-0 group-hover:translate-x-1 transition-transform mt-2" />
+              </div>
+            </motion.div>
+          )}
+
+          {/* Posts List */}
           <div className="space-y-4">
-            {forumPosts.map((post, i) => (
+            {filteredPosts.map((post, i) => (
               <motion.div
-                key={i}
+                key={post.id}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="group flex items-center gap-6 p-6 border border-forest-100 rounded-2xl hover:border-forest-300 hover:bg-forest-50/50 transition-all duration-300 cursor-pointer"
+                onClick={() => setSelectedPost(post)}
+              className="group flex items-start gap-5 p-6 border border-forest-100 rounded-2xl hover:border-forest-300 hover:bg-forest-50/50 transition-all duration-300 cursor-pointer"
               >
-                <div className="w-10 h-10 bg-forest-900 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-forest-900 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <PenSquare size={16} className="text-forest-300" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1.5">
+                  <div className="flex items-center gap-2 mb-1.5">
                     {post.hot && (
                       <span className="text-[9px] font-mono tracking-widest uppercase text-red-500 bg-red-50 border border-red-100 px-2 py-0.5">Trending</span>
                     )}
-                    <span className="text-[10px] font-mono tracking-widest uppercase text-forest-400 bg-forest-50 border border-forest-100 px-2 py-0.5">
-                      {post.category}
-                    </span>
+                    <span className="text-[10px] font-mono tracking-widest uppercase text-forest-400 bg-forest-50 border border-forest-100 px-2 py-0.5">{post.category}</span>
+                    <span className="text-[10px] font-sans text-forest-400 flex items-center gap-1"><Clock size={9} /> {post.readTime}</span>
                   </div>
-                  <h3 className="font-sans font-semibold text-forest-900 group-hover:text-forest-700 transition-colors truncate">{post.title}</h3>
-                  <p className="font-sans text-xs text-forest-400 mt-1">{post.author}</p>
+                  <h3 className="font-sans font-semibold text-forest-900 group-hover:text-forest-700 transition-colors mb-1.5">{post.title}</h3>
+                  <p className="font-body text-forest-400 text-sm leading-relaxed mb-3 line-clamp-2">{post.excerpt}</p>
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="font-sans text-xs text-forest-400">{post.author} · {post.dept} {post.batch}</p>
+                    <div className="hidden md:flex items-center gap-4 text-xs text-forest-400 flex-shrink-0">
+                      <span className="flex items-center gap-1.5"><Rss size={11} /> {post.reads.toLocaleString()}</span>
+                      <span className="flex items-center gap-1.5"><MessageSquare size={11} /> {post.comments}</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mt-2.5">
+                    {post.tags.map(tag => (
+                      <span key={tag} className="text-[10px] font-mono text-forest-400 bg-forest-50 border border-forest-100 px-2 py-0.5">{tag}</span>
+                    ))}
+                  </div>
                 </div>
-                <div className="hidden md:flex items-center gap-6 text-xs text-forest-400 flex-shrink-0">
-                  <span className="flex items-center gap-1.5"><Rss size={11} /> {post.reads.toLocaleString()}</span>
-                  <span className="flex items-center gap-1.5"><MessageSquare size={11} /> {post.comments}</span>
-                </div>
-                <ChevronRight size={16} className="text-forest-300 group-hover:text-forest-600 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight size={16} className="text-forest-300 group-hover:text-forest-600 flex-shrink-0 group-hover:translate-x-1 transition-transform mt-1.5" />
               </motion.div>
             ))}
           </div>
@@ -570,6 +747,136 @@ export default function EngagementPage() {
           </div>
         </div>
       </section>
+
+      {/* ── Discussion Drawer ─────────────────────────────────────── */}
+      <AnimatePresence>
+        {selectedPost && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => { setSelectedPost(null); setReplyText('') }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+            />
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="fixed right-0 top-0 h-full w-full max-w-2xl bg-white z-50 flex flex-col shadow-2xl"
+            >
+              {/* Drawer Header */}
+              <div className="flex items-start justify-between p-8 pb-6 border-b border-forest-100 flex-shrink-0">
+                <div className="flex-1 pr-6">
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="text-[10px] font-mono tracking-widest uppercase text-forest-600 bg-forest-100 border border-forest-200 px-2 py-0.5">{selectedPost.category}</span>
+                    <span className="text-[10px] font-sans text-forest-400 flex items-center gap-1"><Clock size={10} /> {selectedPost.readTime} read</span>
+                    {selectedPost.hot && <span className="text-[9px] font-mono tracking-widest uppercase text-red-500 bg-red-50 border border-red-100 px-2 py-0.5">Trending</span>}
+                  </div>
+                  <h2 className="font-sans font-bold text-forest-900 text-xl leading-snug">{selectedPost.title}</h2>
+                  <div className="flex items-center gap-3 mt-3">
+                    <div className="w-7 h-7 bg-forest-700 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-[9px] font-bold text-white">
+                        {selectedPost.author.split(' ').filter(w => /^[A-Z]/.test(w)).map(w => w[0]).join('').slice(0, 2)}
+                      </span>
+                    </div>
+                    <span className="font-sans text-xs text-forest-500">{selectedPost.author} · {selectedPost.dept} {selectedPost.batch}</span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => { setSelectedPost(null); setReplyText('') }}
+                  className="text-forest-400 hover:text-forest-800 transition-colors p-1 flex-shrink-0"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Scrollable Body */}
+              <div className="flex-1 overflow-y-auto">
+                {/* Post excerpt & meta */}
+                <div className="p-8 border-b border-forest-50">
+                  <p className="font-body text-forest-600 text-sm leading-relaxed mb-5">{selectedPost.excerpt}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {selectedPost.tags.map(tag => (
+                      <span key={tag} className="text-[10px] font-mono text-forest-500 bg-forest-50 border border-forest-100 px-2 py-0.5">{tag}</span>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-6 text-xs text-forest-400 font-sans">
+                    <span className="flex items-center gap-1.5"><Rss size={11} /> {selectedPost.reads.toLocaleString()} reads</span>
+                    <span className="flex items-center gap-1.5"><MessageSquare size={11} /> {selectedPost.comments} comments</span>
+                    <button className="flex items-center gap-1.5 hover:text-forest-700 transition-colors ml-auto">
+                      <Share2 size={11} /> Share
+                    </button>
+                  </div>
+                </div>
+
+                {/* Thread */}
+                <div className="p-8">
+                  <h3 className="font-sans font-bold text-forest-900 text-sm mb-6 flex items-center gap-2">
+                    <MessageSquare size={14} className="text-forest-500" />
+                    Discussion
+                    <span className="text-forest-400 font-normal">({(postDiscussions[selectedPost.id] || []).length} comments)</span>
+                  </h3>
+
+                  <div className="space-y-6">
+                    {(postDiscussions[selectedPost.id] || []).map((comment) => (
+                      <div
+                        key={comment.id}
+                        className={`flex gap-4 ${comment.isAuthor ? 'bg-forest-50 -mx-2 px-4 py-4 rounded-xl border border-forest-100' : ''}`}
+                      >
+                        <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 ${comment.isAuthor ? 'bg-forest-700' : 'bg-forest-100'}`}>
+                          <span className={`text-[10px] font-bold ${comment.isAuthor ? 'text-white' : 'text-forest-600'}`}>{comment.initials}</span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                            <span className="font-sans text-xs font-semibold text-forest-800">{comment.author}</span>
+                            {comment.isAuthor && (
+                              <span className="text-[9px] font-mono tracking-widest uppercase text-forest-600 bg-forest-100 border border-forest-200 px-1.5 py-0.5">Author</span>
+                            )}
+                            <span className="font-mono text-[10px] text-forest-400">{comment.dept} {comment.batch}</span>
+                            <span className="font-sans text-[10px] text-forest-300 ml-auto">{comment.time}</span>
+                          </div>
+                          <p className="font-body text-sm text-forest-600 leading-relaxed">{comment.text}</p>
+                          <button className="flex items-center gap-1 mt-2 text-[10px] font-sans text-forest-400 hover:text-forest-700 transition-colors">
+                            <ThumbsUp size={10} /> {comment.likes}
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Reply Input */}
+              <div className="p-6 border-t border-forest-100 bg-forest-50/50 flex-shrink-0">
+                <div className="flex gap-3">
+                  <div className="w-9 h-9 bg-forest-800 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-[9px] font-bold text-white">You</span>
+                  </div>
+                  <div className="flex-1 flex gap-3">
+                    <input
+                      type="text"
+                      value={replyText}
+                      onChange={e => setReplyText(e.target.value)}
+                      placeholder="Share your thoughts or ask a question..."
+                      className="flex-1 border border-forest-200 bg-white px-4 py-2.5 text-sm font-sans text-forest-900 focus:outline-none focus:border-forest-500 transition-colors"
+                      onKeyDown={e => { if (e.key === 'Enter' && replyText.trim()) setReplyText('') }}
+                    />
+                    <button
+                      onClick={() => setReplyText('')}
+                      disabled={!replyText.trim()}
+                      className="bg-forest-700 text-white px-4 py-2.5 text-xs font-mono tracking-widest uppercase hover:bg-forest-800 transition-colors flex-shrink-0 disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      Reply
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* ── Webinars CTA ──────────────────────────────────────────── */}
       <section id="webinars" className="py-24 bg-forest-900 relative overflow-hidden">

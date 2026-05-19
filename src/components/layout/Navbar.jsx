@@ -17,7 +17,15 @@ const navItems = [
   { label: "Alumni Directory", path: "/directory" },
   { label: "Engagement", path: "/engagement" },
   { label: "Careers", path: "/careers" },
-  { label: "News & Events", path: "/news" },
+  {
+    label: "News & Events",
+    path: "/news",
+    children: [
+      { label: "News", path: "/news" },
+      { label: "Events", path: "/events" },
+      { label: "Archive", path: "/archive" },
+    ],
+  },
   {
     label: "Community",
     path: "/community",

@@ -11,7 +11,7 @@ export const newsItems = [
     author: 'MISTAS International Affairs',
     authorRole: 'Australia Chapter',
     featured: true,
-    image: 'slider1.png',
+    image: '/slider1.png',
     tags: ['Reunion', 'Australia', 'International', 'Melbourne'],
     body: [
       { type: 'paragraph', text: 'In a landmark moment for the global MIST alumni community, the first-ever Australian chapter reunion was held on the evening of 18 April 2026 at the Grand Hyatt Melbourne. More than 120 MIST graduates currently residing across Australia gathered to reconnect, celebrate, and honour the bonds forged at their alma mater.' },
@@ -25,7 +25,7 @@ export const newsItems = [
   },
   {
     id: 1,
-    category: 'Announcement',
+    //category: 'Announcement',
     catColor: 'bg-blue-50 text-blue-700 border-blue-200',
     catDot: 'bg-blue-500',
     title: 'MISTAS Annual Reunion 2025 — Registration Now Open',
@@ -35,7 +35,7 @@ export const newsItems = [
     author: 'MISTAS Secretariat',
     authorRole: 'Official Communication',
     featured: true,
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200',
+    image: '/registration.png',
     tags: ['Reunion', 'Registration', 'Annual Event', 'Campus'],
     body: [
       { type: 'paragraph', text: 'MISTAS is proud to announce that the Annual Reunion 2025 registration portal is now live. This year\'s event, themed "Roots & Reach — A Century of MIST Excellence", promises to be the most spectacular gathering in the association\'s history, with an expected attendance of over 1,200 alumni from across Bangladesh and the globe.' },
@@ -89,7 +89,7 @@ export const newsItems = [
     author: 'Scholarship Committee',
     authorRole: 'MISTAS Welfare Wing',
     featured: false,
-    image: null,
+    image: '/mistsclorship.png',
     tags: ['Scholarship', 'Students', 'Merit', 'Funding'],
     body: [
       { type: 'paragraph', text: 'MISTAS is pleased to announce that applications for the 2025 MISTAS Merit Scholarship are now open. This year, fifteen scholarships will be awarded to deserving undergraduate students currently enrolled at MIST, covering full tuition fees for the academic year 2025–2026.' },
@@ -114,7 +114,7 @@ export const newsItems = [
     readTime: '5 min read',
     author: 'Campus Reporter',
     authorRole: 'MISTAS Media',
-    featured: false,
+    featured: true,
     image: 'https://images.unsplash.com/photo-1581093806997-124204d9fa9d?auto=format&fit=crop&q=80&w=1200',
     tags: ['Lab', 'Innovation', 'Infrastructure', 'Alumni Giving'],
     body: [
