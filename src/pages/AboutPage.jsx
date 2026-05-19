@@ -179,11 +179,11 @@ export default function AboutPage() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="flex items-center justify-center gap-2 font-mono text-xs text-forest-500 mb-8 uppercase tracking-[0.4em]"
+            className="flex items-center justify-center gap-2 font-mono text-xs text-white/50 mb-8 uppercase tracking-[0.4em]"
           >
             <span>Home</span>
-            <div className="w-1 h-1 bg-forest-600 rounded-full" />
-            <span className="text-forest-300">About the Association</span>
+            <div className="w-1 h-1 bg-white/30 rounded-full" />
+            <span className="text-white/80">About the Association</span>
           </motion.div>
 
           <motion.h1
@@ -200,7 +200,7 @@ export default function AboutPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 1 }}
-            className="font-body text-forest-300 text-xl max-w-2xl mx-auto leading-relaxed border-t border-forest-800 pt-8"
+            className="font-body text-white/70 text-xl max-w-2xl mx-auto leading-relaxed border-t border-white/10 pt-8"
           >
             Building the strongest bridge between MIST's glorious past and its
             limitless future. Discover the spirit of MISTAS.
@@ -232,7 +232,7 @@ export default function AboutPage() {
                       className={`font-display text-2xl font-bold leading-none transition-colors duration-300 ${
                         isActive
                           ? "text-white"
-                          : "text-forest-600 group-hover:text-forest-400"
+                          : "text-white/40 group-hover:text-white"
                       }`}
                     >
                       {num}
@@ -243,15 +243,15 @@ export default function AboutPage() {
                         size={11}
                         className={`transition-colors duration-300 ${
                           isActive
-                            ? "text-forest-400"
-                            : "text-forest-500 group-hover:text-forest-300"
+                            ? "text-white/80"
+                            : "text-white/40 group-hover:text-white/70"
                         }`}
                       />
                       <span
                         className={`font-mono text-[9px] tracking-[0.3em] uppercase transition-colors duration-300 ${
                           isActive
-                            ? "text-forest-300"
-                            : "text-forest-500 group-hover:text-forest-300"
+                            ? "text-white/80"
+                            : "text-white/40 group-hover:text-white/70"
                         }`}
                       >
                         {label}

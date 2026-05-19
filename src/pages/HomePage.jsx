@@ -1,4 +1,5 @@
 import HeroBanner from '../components/home/HeroBanner'
+import NewsTicker from '../components/home/NewsTicker'
 import WelcomeMessage from '../components/home/WelcomeMessage'
 import StatsDashboard from '../components/home/StatsDashboard'
 import NewsEvents from '../components/home/NewsEvents'
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <HeroBanner />
+      <NewsTicker />
       <WelcomeMessage />
       <StatsDashboard />
       <NewsEvents />
